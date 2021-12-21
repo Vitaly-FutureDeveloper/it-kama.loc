@@ -1,6 +1,7 @@
 .FriendsBlock{
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 2px;
 
 	width: 90%;
 	max-height: 200px;

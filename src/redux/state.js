@@ -1,72 +1,88 @@
-import {rerenderEntireTree} from "../render";
+const store = {
+	_state : {
 
-const state = {
+		profilePage: {
+			posts : [
+				{id: "1", message: "How are you?", likeCount: "15"},
+				{id: "2", message: "Хаваю, хаваю!", likeCount: "15"},
+				{id: "3", message: "It's my first post", likeCount: "55"},
+			],
+			newPostText: 'it-kama',
+		},
 
-	profilePage: {
-		posts : [
-			{id: "1", message: "How are you?", likeCount: "15"},
-			{id: "2", message: "Хаваю, хаваю!", likeCount: "15"},
-			{id: "3", message: "It's my first post", likeCount: "55"},
-		],
-		newPostText: 'it-kama',
+		dialogsPage :{
+			dialogs : [
+				{id: "1", name: "Dima",},
+				{id: "2", name: "Lesha",},
+				{id: "3", name: "Masha",},
+				{id: "4", name: "Lena",},
+				{id: "5", name: "Pasha",},
+				{id: "6", name: "Dasha",},
+			],
+			messages : [
+				{id: "1", name: "How are you?",},
+				{id: "2", name: "Yuo mmen",},
+				{id: "3", name: "Hi",},
+			],
+			newMessageText: 'it-kama',
+		},
+
+		sidebar : {
+			friends : [
+				{id: 1, name: "Саня",},
+				{id: 2, name: "Алекс",},
+				{id: 3, name: "Шурик",},
+				{id: 4, name: "Шарик",},
+			],
+		},
+	},
+	_callSubscriber ()  {
+		console.log("'State changed");
 	},
 
-	dialogsPage :{
-		dialogs : [
-			{id: "1", name: "Dima",},
-			{id: "2", name: "Lesha",},
-			{id: "3", name: "Masha",},
-			{id: "4", name: "Lena",},
-			{id: "5", name: "Pasha",},
-			{id: "6", name: "Dasha",},
-		],
-		messages : [
-			{id: "1", name: "How are you?",},
-			{id: "2", name: "Yuo mmen",},
-			{id: "3", name: "Hi",},
-		],
-		newMessageText: 'it-kama',
+	getState(){
+		return this._state;
 	},
 
-	sidebar : {
-		friends : [
-			{id: 1, name: "Саня",},
-			{id: 2, name: "Алекс",},
-			{id: 3, name: "Шурик",},
-			{id: 4, name: "Шарик",},
-		],
+	addPost()  {
+		debugger;
+		const newPost = {
+			id: 5,
+			message: this._state.profilePage.newPostText,
+			likesCount: 0,
+		};
+		this._state.profilePage.posts.unshift(newPost);
+		this._state.profilePage.newPostText = '';
+		this._callSubscriber(this._state);
 	},
+
+	addMessage() {
+		const newPost = {
+			id: 5,
+			name: this._state.dialogsPage.newMessageText,
+		};
+		this._state.dialogsPage.messages.push(newPost);
+		this._state.dialogsPage.newMessageText = '';
+		this._callSubscriber(store._state);
+	},
+
+	updateNewPostChange(newText) {
+		this._state.profilePage.newPostText = newText;
+		this._callSubscriber(this._state);
+	},
+
+	updateNewMessageChange(newText) {
+		this._state.dialogsPage.newMessageText = newText;
+		this._callSubscriber(this._state);
+	},
+
+	subscribe(observer) {
+		this._callSubscriber = observer;
+	}
+
+
 };
 
-export const addPost = () => {
-	const newPost = {
-		id: 5,
-		message: state.profilePage.newPostText,
-		likesCount: 0,
-	};
-	state.profilePage.posts.unshift(newPost);
-	state.profilePage.newPostText = '';
-	rerenderEntireTree(state);
-};
 
-export const addMessage = () => {
-	const newPost = {
-		id: 5,
-		name: state.dialogsPage.newMessageText,
-	};
-	state.dialogsPage.messages.push(newPost);
-	state.dialogsPage.newMessageText = '';
-	rerenderEntireTree(state);
-};
-
-export const updateNewMessageChange = (newText) => {
-	state.dialogsPage.newMessageText = newText;
-	rerenderEntireTree(state);
-};
-
-export const updateNewPostChange = (newText) => {
-	state.profilePage.newPostText = newText;
-	rerenderEntireTree(state);
-};
-
-export default state;
+export default store;
+window.store = store;

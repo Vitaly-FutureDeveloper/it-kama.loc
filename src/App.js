@@ -8,10 +8,6 @@ import Profile from "./components/Profile/Profile";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import {addPost} from "./redux/state";
-
-
-
 
 
 const App = (props) => {
