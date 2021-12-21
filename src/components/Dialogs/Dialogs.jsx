@@ -9,11 +9,11 @@ const Dialogs = (props) => {
 	
 	const newMessageElement = React.createRef();
 	const addMessage = () => {
-		props.addMessage();
+		props.dispatch({type: "ADD-MESSAGE"});
 	};
 	const onPostMessage = () => {
 		const text = newMessageElement.current.value;
-		props.updateNewMessageChange(text);
+		props.dispatch({type: "UPDATE-NEW-MESSAGE-TEXT", newText: text});
 	}
 
 	const dialogsElements = props.dialogsPage.dialogs

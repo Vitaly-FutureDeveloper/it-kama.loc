@@ -17,10 +17,7 @@ export const rerenderEntireTree = (state) => {
 			//		Для того чтоб, привязать контекст к store,
 			//		Чтоб, когда мы обращаемся к props, this указывал
 			// 		на store, а не к props
-					 addPost={store.addPost.bind(store)}
-					 updateNewPostChange={store.updateNewPostChange.bind(store)}
-					 addMessage={store.addMessage.bind(store)}
-					 updateNewMessageChange={store.updateNewMessageChange.bind(store)}	/>
+					 dispatch={store.dispatch.bind(store)} />
 
 		</React.StrictMode>,
 		document.getElementById('root')

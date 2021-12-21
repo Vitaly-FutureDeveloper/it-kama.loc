@@ -44,40 +44,41 @@ const store = {
 		return this._state;
 	},
 
-	addPost()  {
-		debugger;
-		const newPost = {
-			id: 5,
-			message: this._state.profilePage.newPostText,
-			likesCount: 0,
-		};
-		this._state.profilePage.posts.unshift(newPost);
-		this._state.profilePage.newPostText = '';
-		this._callSubscriber(this._state);
-	},
-
-	addMessage() {
-		const newPost = {
-			id: 5,
-			name: this._state.dialogsPage.newMessageText,
-		};
-		this._state.dialogsPage.messages.push(newPost);
-		this._state.dialogsPage.newMessageText = '';
-		this._callSubscriber(store._state);
-	},
-
-	updateNewPostChange(newText) {
-		this._state.profilePage.newPostText = newText;
-		this._callSubscriber(this._state);
-	},
-
-	updateNewMessageChange(newText) {
-		this._state.dialogsPage.newMessageText = newText;
-		this._callSubscriber(this._state);
-	},
-
 	subscribe(observer) {
 		this._callSubscriber = observer;
+	},
+
+	dispatch(action){
+		// {
+		// 	type: '',
+		// 	newText: '',
+		// }
+		if(action.type === "ADD-POST"){
+			const newPost = {
+				id: 5,
+				message: this._state.profilePage.newPostText,
+				likesCount: 0,
+			};
+			this._state.profilePage.posts.unshift(newPost);
+			this._state.profilePage.newPostText = '';
+			this._callSubscriber(this._state);
+		} else if(action.type === "UPDATE-NEW-POST-TEXT"){
+			this._state.profilePage.newPostText = action.newText;
+			this._callSubscriber(this._state);
+		}
+
+		if(action.type === "ADD-MESSAGE"){
+			const newPost = {
+				id: 5,
+				name: this._state.dialogsPage.newMessageText,
+			};
+			this._state.dialogsPage.messages.push(newPost);
+			this._state.dialogsPage.newMessageText = '';
+			this._callSubscriber(store._state);
+		} else if(action.type === "UPDATE-NEW-MESSAGE-TEXT"){
+			this._state.dialogsPage.newMessageText = action.newText;
+			this._callSubscriber(this._state);
+		}
 	}
 
 
