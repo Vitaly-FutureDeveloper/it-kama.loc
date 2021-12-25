@@ -3,17 +3,21 @@ import * as React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {addMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 
 
 const Dialogs = (props) => {
 	
-	const newMessageElement = React.createRef();
+	// const newMessageElement = React.createRef();
 	const addMessage = () => {
-		props.dispatch({type: "ADD-MESSAGE"});
+		const action = addMessageCreator();
+		props.dispatch(action);
 	};
-	const onPostMessage = () => {
-		const text = newMessageElement.current.value;
-		props.dispatch({type: "UPDATE-NEW-MESSAGE-TEXT", newText: text});
+	const onNewMessageText = (e) => {
+		const text = e.target.value;
+		const action = updateNewMessageBodyCreator(text);
+
+		props.dispatch(action);
 	}
 
 	const dialogsElements = props.dialogsPage.dialogs
@@ -33,11 +37,17 @@ const Dialogs = (props) => {
 			</div>
 
 			<div className="form-block">
-				<textarea onChange={onPostMessage} value={props.dialogsPage.newMessageText} ref={newMessageElement} name="text" id="" cols="30" rows="8"></textarea>
-				<button onClick={addMessage} type="submit">Отправить</button>
+				<div className="">
+					<textarea onChange={onNewMessageText}
+										value={props.dialogsPage.newMessageBody}
+										name="text" id="" cols="30" rows="8"></textarea>
+				</div>
+				<div className="">
+					<button onClick={addMessage} type="submit">Отправить</button>
+				</div>
 			</div>
 		</div>
 	)
-}
+};
 
 export default Dialogs;

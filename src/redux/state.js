@@ -1,3 +1,8 @@
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
+
 const store = {
 	_state : {
 
@@ -10,8 +15,8 @@ const store = {
 			newPostText: 'it-kama',
 		},
 
-		dialogsPage :{
-			dialogs : [
+		dialogsPage : {
+			dialogs: [
 				{id: "1", name: "Dima",},
 				{id: "2", name: "Lesha",},
 				{id: "3", name: "Masha",},
@@ -19,12 +24,12 @@ const store = {
 				{id: "5", name: "Pasha",},
 				{id: "6", name: "Dasha",},
 			],
-			messages : [
+			messages: [
 				{id: "1", name: "How are you?",},
 				{id: "2", name: "Yuo mmen",},
 				{id: "3", name: "Hi",},
 			],
-			newMessageText: 'it-kama',
+			newMessageBody: 'it-kama',
 		},
 
 		sidebar : {
@@ -48,41 +53,24 @@ const store = {
 		this._callSubscriber = observer;
 	},
 
-	dispatch(action){
+	dispatch(action) {
 		// {
 		// 	type: '',
 		// 	newText: '',
 		// }
-		if(action.type === "ADD-POST"){
-			const newPost = {
-				id: 5,
-				message: this._state.profilePage.newPostText,
-				likesCount: 0,
-			};
-			this._state.profilePage.posts.unshift(newPost);
-			this._state.profilePage.newPostText = '';
-			this._callSubscriber(this._state);
-		} else if(action.type === "UPDATE-NEW-POST-TEXT"){
-			this._state.profilePage.newPostText = action.newText;
-			this._callSubscriber(this._state);
-		}
 
-		if(action.type === "ADD-MESSAGE"){
-			const newPost = {
-				id: 5,
-				name: this._state.dialogsPage.newMessageText,
-			};
-			this._state.dialogsPage.messages.push(newPost);
-			this._state.dialogsPage.newMessageText = '';
-			this._callSubscriber(store._state);
-		} else if(action.type === "UPDATE-NEW-MESSAGE-TEXT"){
-			this._state.dialogsPage.newMessageText = action.newText;
-			this._callSubscriber(this._state);
-		}
+		this._state.profilePage = profileReducer(this._state.profilePage, action);
+		this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+		this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+
+		this._callSubscriber(this._state);
+
 	}
 
 
 };
+
+
 
 
 export default store;
