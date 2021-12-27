@@ -1,12 +1,12 @@
 import React from 'react';
 import './index.css';
-import state from "./redux/state";
+import state from "./redux/store";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from 'react-dom';
 
 // import {subscribe, addPost, updateNewPostChange, addMessage, updateNewMessageChange} from "./redux/state";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
 export const rerenderEntireTree = (state) => {
 	ReactDOM.render(
@@ -24,7 +24,10 @@ export const rerenderEntireTree = (state) => {
 	);
 }
 
-store.subscribe(rerenderEntireTree);
+store.subscribe(() => {
+	const state = store.getState();
+	rerenderEntireTree(state);
+});
 
 
 rerenderEntireTree(store.getState());

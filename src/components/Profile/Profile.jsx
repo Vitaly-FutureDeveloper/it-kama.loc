@@ -1,7 +1,7 @@
 import s from "./Profile.module.css";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {addPost} from "../../redux/state";
+import {addPost} from "../../redux/store";
 
 // const posts = [
 // 	{id: "1", message: "How are you?", likeCount: "15"},
