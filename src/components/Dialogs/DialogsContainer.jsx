@@ -2,35 +2,31 @@ import * as React from 'react';
 
 import {addMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
 
 
-const DialogsContainer = (props) => {
-
-	return (
-		<StoreContext.Consumer>
-			{
-				(store) => {
-					const state = store.getState().dialogsPage;
-
-					const addMessage = () => {
-						const action = addMessageCreator();
-						store.dispatch(action);
-					};
-					const onNewMessageText = (body) => {
-						const action = updateNewMessageBodyCreator(body);
-
-						store.dispatch(action);
-					}
 
 
-					return <Dialogs updateNewMessageBody={onNewMessageText}
-									 sendMessage={addMessage}
-									 dialogsPage={state} />
-				}
-			}
-		</StoreContext.Consumer>
-	);
+const mapStateToProps = (state) => {
+	return {
+		dialogsPage: state.dialogsPage,
+	};
 };
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateNewMessageBody: (body) => {
+			const action = updateNewMessageBodyCreator(body);
+			dispatch(action);
+		},
+		sendMessage: () => {
+			const action = addMessageCreator();
+			dispatch(action);
+		},
+	};
+};
+
+// Вызовет Dialogs и передаст в props dialogsPage: "значение"
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
