@@ -11,6 +11,9 @@ const Navigation = () => {
 					<li className={ `${s.item}` }>
 						<NavLink to="/Dialogs" activeClassName={s.active}>Messages</NavLink>
 					</li>
+					<li className={ `${s.item}` }>
+						<NavLink to="/Users" activeClassName={s.active}>Users</NavLink>
+					</li>
 					<li className={s.item}>
 						<NavLink to="/News" activeClassName={s.active}>News</NavLink>
 					</li>

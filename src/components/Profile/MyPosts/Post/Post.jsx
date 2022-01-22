@@ -1,12 +1,14 @@
 import s from "./Post.module.css";
+import posterPhoto from "../../../../assets/img/PicsArt_11-14-051826.webp"
 
 const Post = (props) => {
 	return (
 		<div className={s.item}>
 			<div>
 			<img
-				src="https://thumb.tildacdn.com/tild6139-3035-4662-a238-376232323063/-/resize/790x/-/format/webp/PicsArt_11-14-051826.jpeg"
-				alt=""/>
+				src={posterPhoto}
+				title="Картиночка"
+				alt="Картинка" />
 			</div>
 			<div>
 				<p>{props.message}</p>

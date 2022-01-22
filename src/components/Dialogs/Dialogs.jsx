@@ -6,7 +6,7 @@ import Message from "./Message/Message";
 
 
 const Dialogs = (props) => {
-	// const state = props.dialogsPage;
+	const state = props.dialogsPage;
 	// const newMessageElement = React.createRef();
 	const addMessage = () => {
 		props.sendMessage();
@@ -16,11 +16,13 @@ const Dialogs = (props) => {
 		props.updateNewMessageBody(text);
 	}
 
-	const dialogsElements = props.dialogsPage.dialogs
-		.map(d => <DialogItem name={d.name} id={d.id}/>);
+	const dialogsElements = state.dialogs
+		.map(d => <DialogItem name={d.name} key={d.id} id={d.id}/>);
 
-	const messagesElements = props.dialogsPage.messages
-		.map(m => <Message message={m.name} id={m.id}/>);
+	const messagesElements = state.messages
+		.map(m => <Message message={m.name} key={m.id} id={m.id}/>);
+
+	const newMessageBody = state.newMessageBody;
 
 	return (
 		<div className={s.dialogs}>
@@ -35,7 +37,7 @@ const Dialogs = (props) => {
 			<div className="form-block">
 				<div className="">
 					<textarea onChange={onNewMessageText}
-										value={props.dialogsPage.newMessageBody}
+										value={newMessageBody}
 										name="text" id="" cols="30" rows="8"></textarea>
 				</div>
 				<div className="">

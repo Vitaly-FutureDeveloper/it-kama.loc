@@ -1,0 +1,59 @@
+.usersPhoto{
+	width: 100px;
+	height: auto;
+}
+
+.paginationList{
+	display: flex;
+	list-style: none;
+
+	margin-bottom: 20px;
+}
+.paginationList_item{
+	transition: 200ms;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	width: 40px;
+	height: 40px;
+
+	color: white;
+	background-color: #de234c;
+	box-shadow: inset 0 0 0 2px white,
+							0 0 0 1px #dc1743;
+	/*border: 1px solid black;*/
+	border-radius: 8px;
+	cursor: pointer;
+}
+.paginationList_item:hover,
+.paginationList_item:focus{
+	background-color: #e3617c;
+}
+.paginationList_item:not(:last-child){
+	margin-right: 10px;
+}
+.paginationList_item__active{
+	position: relative;
+	box-shadow: inset 0 0 0 2px #ffac23,
+							0 0 0 1px #fa9e00;
+	color: #bab39e;
+}
+.paginationList_item::after{
+	transition: transform 0.2s;
+	content: "";
+	position: absolute;
+	bottom: 7px;
+	left: 50%;
+	transform: translateX(-50%) scaleX(0);
+
+	width: 60%;
+	height: 2px;
+
+	border-radius: 2px;
+
+	background-color: #ffac23;
+}
+.paginationList_item__active::after{
+	transform: translateX(-50%) scaleX(1);
+}
