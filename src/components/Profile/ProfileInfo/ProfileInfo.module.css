@@ -1,3 +1,41 @@
-.description-block{
+.descriptionBlock{
+	display: flex;
 	margin-top: 20px;
+}
+.avatarBlock{
+	width: 200px;
+	height: auto;
+}
+.avatarBlock img{
+	width: 100%;
+	height: auto;
+}
+.descriptions{
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-gap: 15px;
+
+	margin: 0 20px;
+}
+
+.descriptionName__fullname{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.contactList{
+	list-style: none;
+	margin: 15px 0;
+	padding: 0;
+}
+@media (min-width:1000px) {
+	.contactList{
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-row-gap: 0;
+		grid-column-gap: 50px;
+
+		align-items: start;
+		align-content: start;
+	}
 }
