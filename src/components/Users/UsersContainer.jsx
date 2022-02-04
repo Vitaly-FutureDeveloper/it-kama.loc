@@ -10,6 +10,7 @@ import {
 import Users from "./Users";
 import Spinner from "../spinners/spinner";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -79,7 +80,12 @@ const mapDispatchToProps = {
 };
 
 //HOC
-const UsersRedirectComponent = withAuthRedirect(UsersContainer);
+// const UsersRedirectComponent = withAuthRedirect(UsersContainer);
+//
+//
+// export default connect(mapStateToProps, mapDispatchToProps)(UsersRedirectComponent);
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersRedirectComponent);
+export default compose(
+	withAuthRedirect,
+	connect(mapStateToProps, mapDispatchToProps)
+)(UsersContainer);

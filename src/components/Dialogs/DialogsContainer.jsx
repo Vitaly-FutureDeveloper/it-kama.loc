@@ -4,6 +4,7 @@ import {addMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialog
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 
 
@@ -28,11 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-
-//HOC
-const DialogsRedirectComponent = withAuthRedirect(Dialogs);
-
-// Вызовет Dialogs и передаст в props dialogsPage: "значение"
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsRedirectComponent);
-
-export default DialogsContainer;
+export default compose(
+	connect(mapStateToProps, mapDispatchToProps),
+	withAuthRedirect
+)(Dialogs);
