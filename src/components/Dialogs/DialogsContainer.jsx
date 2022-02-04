@@ -3,13 +3,14 @@ import * as React from 'react';
 import {addMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
 
 
 const mapStateToProps = (state) => {
 	return {
-		dialogsPage: state.dialogsPage,
+		dialogsPage: state.dialogsPage
 	};
 };
 
@@ -26,7 +27,12 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
+
+
+//HOC
+const DialogsRedirectComponent = withAuthRedirect(Dialogs);
+
 // Вызовет Dialogs и передаст в props dialogsPage: "значение"
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(DialogsRedirectComponent);
 
 export default DialogsContainer;

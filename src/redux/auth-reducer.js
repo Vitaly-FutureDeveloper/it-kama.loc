@@ -1,3 +1,5 @@
+import {authAPI} from "../api/api";
+
 const SET_USER_DATA = "SET_USER_DATA";
 const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-BODY";
 
@@ -36,6 +38,17 @@ export const setAuthUserData = (userId, email, login) => ({
 		login
 	}
 });
+
+export const getAuthUserData = () => {
+	return (dispatch) => {
+		authAPI.me().then((response) => {
+			if (response.data.resultCode === 0){
+				const {id, email, login} = response.data.data;
+				dispatch(setAuthUserData(id, email, login));
+			}
+		});
+	}
+}
 
 
 export default authReducer;

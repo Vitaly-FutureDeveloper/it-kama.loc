@@ -23,6 +23,9 @@ const Navigation = () => {
 					<li className={s.item}>
 						<NavLink to="/Settings" activeClassName={s.active}>Settings</NavLink>
 					</li>
+					<li className={s.item}>
+						<NavLink to="/Login" activeClassName={s.active}>Login</NavLink>
+					</li>
 				</ul>
 			</nav>
 	);

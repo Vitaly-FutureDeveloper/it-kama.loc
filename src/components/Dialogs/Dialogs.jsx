@@ -5,7 +5,9 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
 
+
 const Dialogs = (props) => {
+
 	const state = props.dialogsPage;
 	// const newMessageElement = React.createRef();
 	const addMessage = () => {
@@ -23,6 +25,7 @@ const Dialogs = (props) => {
 		.map(m => <Message message={m.name} key={m.id} id={m.id}/>);
 
 	const newMessageBody = state.newMessageBody;
+
 
 	return (
 		<div className={s.dialogs}>

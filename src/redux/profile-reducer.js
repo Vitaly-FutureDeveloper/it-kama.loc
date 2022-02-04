@@ -1,4 +1,5 @@
 import {act} from "@testing-library/react";
+import {profileAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -55,5 +56,13 @@ export const updateNewPostTextCreator = (text) => ({
 	type: UPDATE_NEW_POST_TEXT,
 	newText: text
 });
+
+export const getProfile = (userId) => {
+	return (dispatch) => {
+		profileAPI.getProfile(userId).then((response) => {
+			dispatch(setUsersProfile(response.data));
+		});
+	}
+}
 
 export default profileReducer;
