@@ -79,11 +79,6 @@ const mapDispatchToProps = {
 	getUsersThunkCreator,
 };
 
-//HOC
-// const UsersRedirectComponent = withAuthRedirect(UsersContainer);
-//
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(UsersRedirectComponent);
 
 export default compose(
 	withAuthRedirect,

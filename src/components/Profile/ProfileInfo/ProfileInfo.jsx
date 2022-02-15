@@ -1,8 +1,8 @@
 import s from "./ProfileInfo.module.css";
-import genPhoto from "../../../assets/img/scale_1200.webp"
 import userPhoto from '../../../assets/img/im.png';
 import Spinner from "../../spinners/spinner";
 import LookingJob from "./LookingJob/LookingJob";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
 	if (!props.profile) {
@@ -11,10 +11,13 @@ const ProfileInfo = (props) => {
 
 	return (
 	<section className={s.content}>
+		{/*{<header>*/}
+		{/*	<img*/}
+		{/*		src={genPhoto}*/}
+		{/*		alt="" width="100%"/>*/}
+		{/*</header>}*/}
 		<header>
-			<img
-				src={genPhoto}
-				alt="" width="100%"  />
+			<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
 		</header>
 		<div className={s.descriptionBlock}>
 
