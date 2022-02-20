@@ -8,7 +8,7 @@ import {
 } from "../../redux/users-reducer";
 
 import Users from "./Users";
-import Spinner from "../spinners/spinner";
+import Spinner from "../common/spinners/spinner";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 

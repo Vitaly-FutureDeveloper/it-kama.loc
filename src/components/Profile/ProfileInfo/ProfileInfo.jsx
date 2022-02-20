@@ -1,6 +1,6 @@
 import s from "./ProfileInfo.module.css";
 import userPhoto from '../../../assets/img/im.png';
-import Spinner from "../../spinners/spinner";
+import Spinner from "../../common/spinners/spinner";
 import LookingJob from "./LookingJob/LookingJob";
 import ProfileStatus from "./ProfileStatus";
 
