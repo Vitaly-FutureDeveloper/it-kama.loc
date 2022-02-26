@@ -1,8 +1,7 @@
 import {authAPI} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_DATA = "SET_USER_DATA";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-BODY";
-
 
 const initialState = {
 	userId: null,
@@ -17,8 +16,7 @@ const authReducer = (state=initialState, action) => {
 		case SET_USER_DATA: {
 			return {
 				...state,
-				...action.data,
-				isAuth: true,
+				...action.payload
 			};
 		}
 
@@ -30,25 +28,56 @@ const authReducer = (state=initialState, action) => {
 };
 
 
-export const setAuthUserData = (userId, email, login) => ({
+export const setAuthUserData = (userId, email, login, isAuth) => ({
 	type: SET_USER_DATA,
-	data: {
+	payload: {
 		userId,
 		email,
-		login
+		login,
+		isAuth,
 	}
 });
 
 export const getAuthUserData = () => {
 	return (dispatch) => {
-		authAPI.me().then((response) => {
+		return authAPI.me().then((response) => {
 			if (response.data.resultCode === 0){
 				const {id, email, login} = response.data.data;
-				dispatch(setAuthUserData(id, email, login));
+				dispatch(setAuthUserData(id, email, login, true));
 			}
 		});
 	}
-}
+};
+
+export const login = (email, password, rememberMe) => {
+	return (dispatch) => {
+		authAPI.login(email, password, rememberMe).then((response) => {
+			if (response.data.resultCode === 0){
+				// После логинизации диспатчим САНКу
+				// Которая проверяет: залогинины ли мы
+				dispatch(getAuthUserData());
+			} else {
+				// stopSubmit - для обработки ошибок
+				const message = response.data.messages.length > 0 ? response.data.messages[0] : "какая-то ошибка";
+				const action = stopSubmit("login", {_error: message});
+
+				dispatch(action);
+			}
+		});
+	}
+};
+
+export const logout = () => {
+	return (dispatch) => {
+		authAPI.logout().then((response) => {
+			if (response.data.resultCode === 0){
+				// После логинизации диспатчим САНКу
+				// Которая проверяет: залогинины ли мы
+				dispatch(setAuthUserData(null, null, null, true));
+			}
+		});
+	}
+};
 
 
 export default authReducer;

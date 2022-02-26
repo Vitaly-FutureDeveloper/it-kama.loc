@@ -6,7 +6,6 @@ const FormControl = ({input, meta, element, ...props}) => {
 	return (
 		<div className={s.formControl + " " + s.error}>
 			<div>
-				{/*<textarea {...props} {...input} />*/}
 				{props.children}
 			</div>
 			{ hasError && <span>{meta.error}</span> }

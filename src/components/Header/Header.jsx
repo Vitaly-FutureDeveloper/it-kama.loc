@@ -3,7 +3,6 @@ import logo from '../../assets/img/logo-social.png'
 import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
-
 	return (
 		<header className={s.header}>
 			<img src={logo} alt="" />
@@ -12,7 +11,7 @@ const Header = (props) => {
 				{!props.isAuth ?
 					<NavLink to={'/login'}>Войти</NavLink>
 				:
-					props.login
+					<div>{props.login} <button onClick={props.logout}>Выйти</button></div>
 				}
 			</div>
 		</header>
