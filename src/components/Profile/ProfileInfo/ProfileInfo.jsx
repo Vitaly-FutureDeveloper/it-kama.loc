@@ -3,6 +3,7 @@ import userPhoto from '../../../assets/img/im.png';
 import Spinner from "../../common/spinners/spinner";
 import LookingJob from "./LookingJob/LookingJob";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
 	if (!props.profile) {
@@ -17,7 +18,7 @@ const ProfileInfo = (props) => {
 		{/*		alt="" width="100%"/>*/}
 		{/*</header>}*/}
 		<header>
-			<ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+			<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 		</header>
 		<div className={s.descriptionBlock}>
 

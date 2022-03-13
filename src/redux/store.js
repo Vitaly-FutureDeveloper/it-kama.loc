@@ -1,3 +1,5 @@
+// Учебный аналог Redux, store
+
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import dialogsReducer from "./dialogs-reducer";
