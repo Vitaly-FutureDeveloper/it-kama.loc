@@ -5,7 +5,7 @@ const getUsersSelector = (state) => {
 };
 
 export const getUsers = createSelector(getUsersSelector,(users) => {
-	return users.filter(u => true);
+	return users && users.filter(u => true);
 });
 
 const getPageSizeSelector = (state) => {

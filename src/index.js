@@ -7,20 +7,23 @@ import ReactDOM from 'react-dom';
 
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<App />
-			{/*<App state={state}*/}
-			{/*		 store={store}*/}
-			{/*//		.bind(store)*/}
-			{/*//		Для того чтоб, привязать контекст к store,*/}
-			{/*//		Чтоб, когда мы обращаемся к props, this указывал*/}
-			{/*// 		на store, а не к props*/}
-			{/*		 dispatch={store.dispatch.bind(store)} />*/}
-		</Provider>
+		<BrowserRouter>
+			<Provider store={store}>
+				<App />
+				{/*<App state={state}*/}
+				{/*		 store={store}*/}
+				{/*//		.bind(store)*/}
+				{/*//		Для того чтоб, привязать контекст к store,*/}
+				{/*//		Чтоб, когда мы обращаемся к props, this указывал*/}
+				{/*// 		на store, а не к props*/}
+				{/*		 dispatch={store.dispatch.bind(store)} />*/}
+			</Provider>
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById('root')
 );
