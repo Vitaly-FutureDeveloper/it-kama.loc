@@ -2,7 +2,6 @@ import s from "./ProfileInfo.module.css";
 import userPhoto from '../../../assets/img/im.png';
 import Spinner from "../../common/spinners/spinner";
 import LookingJob from "./LookingJob/LookingJob";
-import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
@@ -12,11 +11,6 @@ const ProfileInfo = (props) => {
 
 	return (
 	<section className={s.content}>
-		{/*{<header>*/}
-		{/*	<img*/}
-		{/*		src={genPhoto}*/}
-		{/*		alt="" width="100%"/>*/}
-		{/*</header>}*/}
 		<header>
 			<ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} />
 		</header>

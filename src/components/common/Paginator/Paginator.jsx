@@ -15,7 +15,9 @@ const Paginator = ({totalUsersCount, pageSize, currentPage, onPageChanged}) => {
 				pages.map( (p) => {
 					let currentPageClass = (currentPage === p) ? s.paginationList_item__active + ' ' : '';
 					return <li className={currentPageClass + s.paginationList_item}
-										 onClick={(e) => {onPageChanged(p)}} >{p}</li>
+										 onClick={(e) => {onPageChanged(p)}} >
+									{ p }
+								</li>
 				})
 			}
 		</ul>

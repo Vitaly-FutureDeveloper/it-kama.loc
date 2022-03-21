@@ -26,29 +26,13 @@ class UsersContainer extends React.Component {
 
 
 	componentDidMount() {
-		const currentPage = this.props.currentPage;
-		const pageSize = this.props.pageSize;
+		const {currentPage, pageSize} = this.props;
 		this.props.getUsersThunkCreator(currentPage, pageSize);
-
-		// this.props.toggleIsFetching(true);
-		//
-		// usersAPI.getUsers(currentPage, pageSize).then((data) => {
-		// 	this.props.setUsers(data.items);
-		// 	this.props.setTotalUsersCount(data.totalCount);
-		// 	this.props.toggleIsFetching(false);
-		// });
 	}
 
 	onPageChanged = (pageNumber) => {
-		const pageSize = this.props.pageSize;
+		const {pageSize} = this.props;
 		this.props.getUsersThunkCreator(pageNumber, pageSize);
-		// this.props.setCurrentPage(pageNumber);
-		// this.props.toggleIsFetching(true);
-		//
-		// usersAPI.getUsers(pageNumber, pageSize).then((data) => {
-		// 	this.props.setUsers(data.items);
-		// 	this.props.toggleIsFetching(false);
-		// });
 	}
 
 	render(){
@@ -67,21 +51,10 @@ class UsersContainer extends React.Component {
 
 }
 
-// const mapStateToProps = (state) => {
-// 	return {
-// 		users: state.usersPage.users,
-// 		pageSize: state.usersPage.pageSize,
-// 		totalUsersCount: state.usersPage.totalUsersCount,
-// 		currentPage: state.usersPage.currentPage,
-// 		isFetching: state.usersPage.isFetching,
-// 		followingInProgress: state.usersPage.followingInProgress
-// 	};
-// };
 
 
 const mapStateToProps = (state) => {
 	return {
-		//users: getUsersSuper(state),
 		users: getUsers(state),
 		pageSize: getPageSize(state),
 		totalUsersCount: getTotalUsersCount(state),
