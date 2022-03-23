@@ -110,7 +110,7 @@ export const followUnfollowToggle = async (dispatch, userId, apiMethod, actionCr
 
 export const follow = (userId) => {
 	return async (dispatch) => {
-		const apiMethod = usersAPI.follow.bind(usersAPI);
+		const apiMethod = await usersAPI.follow.bind(usersAPI);
 
 		followUnfollowToggle(dispatch, userId, apiMethod, followSuccess);
 	}
@@ -118,7 +118,7 @@ export const follow = (userId) => {
 
 export const unfollow = (userId) => {
 	return async (dispatch) => {
-		const apiMethod = usersAPI.unfollow.bind(usersAPI);
+		const apiMethod = await usersAPI.unfollow.bind(usersAPI);
 
 		followUnfollowToggle(dispatch, userId, apiMethod, unfollowSuccess);
 	}

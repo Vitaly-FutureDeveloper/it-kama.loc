@@ -8,22 +8,12 @@ import ReactDOM from 'react-dom';
 import store from "./redux/redux-store";
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
+import SamuraiJSApp from "./App";
 
 
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
-			<Provider store={store}>
-				<App />
-				{/*<App state={state}*/}
-				{/*		 store={store}*/}
-				{/*//		.bind(store)*/}
-				{/*//		Для того чтоб, привязать контекст к store,*/}
-				{/*//		Чтоб, когда мы обращаемся к props, this указывал*/}
-				{/*// 		на store, а не к props*/}
-				{/*		 dispatch={store.dispatch.bind(store)} />*/}
-			</Provider>
-		</BrowserRouter>
+		<SamuraiJSApp />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
