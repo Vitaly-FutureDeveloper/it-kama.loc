@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import s from './Paginator.module.css';
-//import on from "classnames";
 
 const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize=10}) => {
 	const pagesCount = Math.ceil(totalItemsCount / pageSize);
@@ -14,21 +13,25 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, porti
 	const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
 	const rightPortionPageNumber = portionNumber * portionSize;
 
+	const disabledBtnBefore = portionNumber > 1 ? '' : true;
+	const disabledBtnNext = portionCount > portionNumber ? '' : true;
+
 	return (
 		<div className={s.pagination}>
 
-			{ portionNumber > 1 &&
-				<button className={s.paginationBtn + ' ' + s.paginationBtn_prev}
-								onClick={() => setPortionNumber(portionNumber - 1)} >
-				</button>
-			}
+			<button className={s.paginationBtn + ' ' + s.paginationBtn_prev}
+							onClick={() => setPortionNumber(portionNumber - 1)}
+							disabled={disabledBtnBefore} >
+			</button>
 
 			<ul className={s.paginationList}>
 				{
 					pages
 						.filter( (p) => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
 						.map( (p) => {
-						let currentPageClass = (currentPage === p) ? s.paginationList_item__active + ' ' : '';
+
+						let currentPageClass = (currentPage === p) ? `${s.paginationList_item__active} ` : '';
+
 						return <li className={currentPageClass + s.paginationList_item}
 											 onClick={(e) => {onPageChanged(p)}} >
 										{ p }
@@ -37,12 +40,12 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, porti
 				}
 			</ul>
 
-			{ portionCount > portionNumber &&
-				<button className={s.paginationBtn + ' ' + s.paginationBtn_next}
-								onClick={() => setPortionNumber(portionNumber + 1)} >
-				</button>
-			}
-	</div>
+			<button className={s.paginationBtn + ' ' + s.paginationBtn_next}
+							onClick={() => setPortionNumber(portionNumber + 1)}
+							disabled={disabledBtnNext} >
+			</button>
+
+		</div>
 	);
 
 };

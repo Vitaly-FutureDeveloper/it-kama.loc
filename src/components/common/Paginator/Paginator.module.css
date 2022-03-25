@@ -29,6 +29,9 @@
 .paginationBtn:focus{
 	opacity: 0.5;
 }
+.paginationBtn:disabled{
+	background-color: #bab39e;
+}
 
 .paginationBtn::before,
 .paginationBtn::after{

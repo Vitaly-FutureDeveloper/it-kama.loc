@@ -2,21 +2,27 @@ import logo from './logo.svg';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {HashRouter, Route, withRouter} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+// import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./Login/Login";
+// import Login from "./Login/Login";
 import React from "react";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import Spinner from "./components/common/spinners/spinner";
 import store from "./redux/redux-store";
+import {withSuspense} from "./hoc/withSuspense";
+
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
+const Login = React.lazy(() => import("./Login/Login"));
+
 
 
 class App extends React.Component {
@@ -44,11 +50,9 @@ class App extends React.Component {
 					{/*<Route path='/settings' component={Settings} />*/}
 					{/*<Route path='/news' component={News} />*/}
 
-					<Route path='/dialogs' render={() =>
-						<DialogsContainer/>}/>
+					<Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
 
-					<Route path='/profile/:userId?' render={() =>
-						<ProfileContainer/>}/>
+					<Route path='/profile/:userId?' render={withSuspense(ProfileContainer)}/>
 
 					<Route path='/music' render={() => <Music/>}/>
 					<Route path='/settings' render={() => <Settings/>}/>
@@ -56,7 +60,7 @@ class App extends React.Component {
 
 					<Route path='/users' render={() => <UsersContainer/>}/>
 
-					<Route path='/login' render={() => <Login/>}/>
+					<Route path='/login' render={withSuspense(Login)} />
 				</div>
 			</div>
 		);
@@ -74,8 +78,8 @@ const AppContainer = compose(
 	connect(mapStateToProps, {initializeApp})
 )(App);
 
-const SamuraiJSApp = (props) => {
-	return <BrowserRouter>
+const SamuraiJSApp = () => {
+	return <HashRouter>
 		<Provider store={store}>
 			<AppContainer />
 			{/*<App state={state}*/}
@@ -86,7 +90,7 @@ const SamuraiJSApp = (props) => {
 			{/*// 		на store, а не к props*/}
 			{/*		 dispatch={store.dispatch.bind(store)} />*/}
 		</Provider>
-	</BrowserRouter>;
+	</HashRouter>;
 };
 
 export default SamuraiJSApp;
