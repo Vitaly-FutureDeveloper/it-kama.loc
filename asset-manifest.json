@@ -1,0 +1,39 @@
+{
+  "files": {
+    "static/js/0.bcdc90c4.chunk.js": "/it-kama.loc/static/js/0.bcdc90c4.chunk.js",
+    "static/js/0.bcdc90c4.chunk.js.map": "/it-kama.loc/static/js/0.bcdc90c4.chunk.js.map",
+    "main.css": "/it-kama.loc/static/css/main.757b001a.chunk.css",
+    "main.js": "/it-kama.loc/static/js/main.b4e12b62.chunk.js",
+    "main.js.map": "/it-kama.loc/static/js/main.b4e12b62.chunk.js.map",
+    "runtime-main.js": "/it-kama.loc/static/js/runtime-main.6fc87a8b.js",
+    "runtime-main.js.map": "/it-kama.loc/static/js/runtime-main.6fc87a8b.js.map",
+    "static/js/3.e0a5b854.chunk.js": "/it-kama.loc/static/js/3.e0a5b854.chunk.js",
+    "static/js/3.e0a5b854.chunk.js.map": "/it-kama.loc/static/js/3.e0a5b854.chunk.js.map",
+    "static/css/4.a5795c78.chunk.css": "/it-kama.loc/static/css/4.a5795c78.chunk.css",
+    "static/js/4.88a77f92.chunk.js": "/it-kama.loc/static/js/4.88a77f92.chunk.js",
+    "static/js/4.88a77f92.chunk.js.map": "/it-kama.loc/static/js/4.88a77f92.chunk.js.map",
+    "static/css/5.df05e8e3.chunk.css": "/it-kama.loc/static/css/5.df05e8e3.chunk.css",
+    "static/js/5.0fc785e6.chunk.js": "/it-kama.loc/static/js/5.0fc785e6.chunk.js",
+    "static/js/5.0fc785e6.chunk.js.map": "/it-kama.loc/static/js/5.0fc785e6.chunk.js.map",
+    "static/css/6.d217a139.chunk.css": "/it-kama.loc/static/css/6.d217a139.chunk.css",
+    "static/js/6.7ffb66f3.chunk.js": "/it-kama.loc/static/js/6.7ffb66f3.chunk.js",
+    "static/js/6.7ffb66f3.chunk.js.map": "/it-kama.loc/static/js/6.7ffb66f3.chunk.js.map",
+    "static/js/7.1220182c.chunk.js": "/it-kama.loc/static/js/7.1220182c.chunk.js",
+    "static/js/7.1220182c.chunk.js.map": "/it-kama.loc/static/js/7.1220182c.chunk.js.map",
+    "index.html": "/it-kama.loc/index.html",
+    "static/css/4.a5795c78.chunk.css.map": "/it-kama.loc/static/css/4.a5795c78.chunk.css.map",
+    "static/css/5.df05e8e3.chunk.css.map": "/it-kama.loc/static/css/5.df05e8e3.chunk.css.map",
+    "static/css/6.d217a139.chunk.css.map": "/it-kama.loc/static/css/6.d217a139.chunk.css.map",
+    "static/css/main.757b001a.chunk.css.map": "/it-kama.loc/static/css/main.757b001a.chunk.css.map",
+    "static/js/3.e0a5b854.chunk.js.LICENSE.txt": "/it-kama.loc/static/js/3.e0a5b854.chunk.js.LICENSE.txt",
+    "static/media/PicsArt_11-14-051826.cf01067b.webp": "/it-kama.loc/static/media/PicsArt_11-14-051826.cf01067b.webp",
+    "static/media/im.png": "/it-kama.loc/static/media/im.05338168.png",
+    "static/media/logo.6ce24c58.svg": "/it-kama.loc/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6fc87a8b.js",
+    "static/js/3.e0a5b854.chunk.js",
+    "static/css/main.757b001a.chunk.css",
+    "static/js/main.b4e12b62.chunk.js"
+  ]
+}
