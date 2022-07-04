@@ -3,3 +3,36 @@
 	height: auto;
 }
 
+.btnUnFollow,
+.btnFollow{
+	transition: 0.2s linear;
+
+	padding: 4px 5px;
+	border-radius: 8px;
+
+	color: #08081d;
+}
+
+.btnUnFollow{
+	border: 2px solid #c9303b;
+	box-shadow: 0px 0px 8px -1px rgba(184, 19, 255, 0.79),
+	inset 0px 0px 6px -3px rgba(115,0,233,0.79);
+}
+.btnFollow:hover,
+.btnFollow:focus{
+	box-shadow: 0px 0px 8px -1px rgba(184, 19, 255, 0.92),
+	inset 0px 0px 6px -3px rgba(104, 0, 215, 0.86);
+}
+
+.btnFollow{
+	border: 2px solid #14d411;
+	box-shadow: 0px 0px 8px -1px rgba(57, 255, 136, 0.79),
+	inset 0px 0px 6px -3px rgba(45, 194, 239, 0.87);
+}
+
+.btnFollow:hover,
+.btnFollow:focus{
+	box-shadow: 0px 0px 8px -1px rgba(57, 255, 136, 0.89),
+	inset 0px 0px 6px -3px rgba(45, 194, 239, 0.94);
+}
+

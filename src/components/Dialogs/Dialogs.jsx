@@ -45,15 +45,15 @@ const maxLenght50 = maxLenghtCreator(50);
 const AddMessageForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
-			<div className="form-block">
+			<div className={s.formBlock}>
 				<div className="">
 					<Field component={Textarea}
 								 validate={[required, maxLenght50]}
 								 name="newMessageBody"
 								 placeholder="Введите своё сообщение" />
 				</div>
-				<div className="">
-					<button>Отправить</button>
+				<div className={s.btnSendBlock}>
+					<button className="btn btn-send">Отправить</button>
 				</div>
 			</div>
 		</form>

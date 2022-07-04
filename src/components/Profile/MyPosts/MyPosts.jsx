@@ -1,9 +1,8 @@
 import * as React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {Field, reduxForm} from "redux-form";
-import {maxLenghtCreator, required} from "../../../utils/validators/validators";
-import {Textarea} from "../../common/FormsControls/FormsControls";
+import {reduxForm} from "redux-form";
+import {createField, Textarea} from "../../common/FormsControls/FormsControls";
 
 
 
@@ -21,7 +20,7 @@ const MyPosts = React.memo((props) => {
 
 	return (
 		<div className={s.postsBlock}>
-			<p>myposts</p>
+			<h2>Сообщения</h2>
 
 			<AddPostFormRedux onSubmit={onAddPost} />
 			<div className={s.posts}>
@@ -31,27 +30,31 @@ const MyPosts = React.memo((props) => {
 	);
 });
 
-const maxLenght10 = maxLenghtCreator(10);
 
 const AddNewPostForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
 			<div>
-				<Field component={Textarea}
-							 // maxLenghtCreator(10) - вызываем
-								// вернёт функцию валидатор
-							 validate={[required, maxLenght10]}
-							 name={"newPostText"}
-							 placeholder={"Введите текст"} />
+				{/*<Field component={Textarea}*/}
+				{/*			 // maxLenghtCreator(10) - вызываем*/}
+				{/*				// вернёт функцию валидатор*/}
+				{/*			 validate={[required, maxLenght10]}*/}
+				{/*			 name={"newPostText"}*/}
+				{/*			 placeholder={"Введите текст"} />*/}
+
+				{createField("Введите пост",
+					"newPostText",
+					[],
+					Textarea )}
 			</div>
-			<div>
-				<button>Отправить</button>
+			<div className={s.sendBtnBlock}>
+				<button className="btn btn-send">Отправить</button>
 			</div>
 		</form>
 	)
 };
 
-const AddPostFormRedux = reduxForm({ form: 'ProfoleAddNewPostForm' })(AddNewPostForm);
+const AddPostFormRedux = reduxForm({ form: 'ProfileAddNewPostForm' })(AddNewPostForm);
 
 
 export default MyPosts;

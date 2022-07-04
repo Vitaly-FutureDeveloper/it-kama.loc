@@ -3,28 +3,32 @@ import s from './users.module.css';
 import userPhoto from '../../assets/img/im.png';
 import {NavLink} from "react-router-dom";
 
-const User = ({user, followingInProgress, follow, unfollow}) => {
+const User = ({key, user, followingInProgress, follow, unfollow}) => {
 	return (
-		<div>
+		<div key={key}>
 				<span>
 					<div>
 						<NavLink to={`/Profile/${user.id}`}>
 							<img className={s.usersPhoto} src={ user.photos.small || userPhoto } />
 						</NavLink>
 					</div>
+
 					<div>
-						{user.followed ?
-							<button disabled={followingInProgress.some(id => id === user.id)}
+
+						{ user.followed ?
+							<button className={`btn ${s.btnUnFollow}`} disabled={followingInProgress.some(id => id === user.id)}
 											onClick={ () => {
 								unfollow(user.id);
-							}}>UNFollow</button>
+							}}>Убрать из друзей</button>
 
-							: <button disabled={followingInProgress.some(id => id === user.id)}
+							: <button className={`btn ${s.btnFollow}`} disabled={followingInProgress.some(id => id === user.id)}
 								onClick={ () => {
 									follow(user.id);
-								}}>Follow</button>
+								}}>В друзья</button>
 						}
+
 					</div>
+
 				</span>
 				<span>
 					<span>

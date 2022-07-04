@@ -1,6 +1,8 @@
 .App {
   text-align: center;
 	background-color: white;
+
+	box-sizing: border-box;
 }
 
 .App-logo {
@@ -23,6 +25,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.iconBlock{
+	width: 50px;
+	height: 35px;
 }
 
 .App-link {
@@ -59,7 +66,47 @@
 	padding: 0;
 	cursor: pointer;
 }
-.btn:hover,
-.btn:focus{
-	/*opacity: 0.8;*/
+
+.btn-send{
+	transition: 0.2s linear;
+	font-weight: bold;
+	padding: 10px 12px;
+	border: 2px solid #7638fc;
+	border-radius: 8px;
+
+	color: #08081d;
+
+	box-shadow: 0px 0px 8px -1px rgba(184, 19, 255, 0.79),
+							inset 0px 0px 6px -3px rgba(115,0,233,0.79);
+}
+.btn-send:hover,
+.btn-send:focus{
+	background-image: linear-gradient(rgba(109, 19, 255, 0.03), rgba(89, 0, 233, 0.03));
+	box-shadow: 0px 0px 8px -1px rgba(109, 19, 255, 0.82),
+							inset 0px 0px 6px -3px rgba(89, 0, 233, 0.82);
+}
+
+.formControl{
+	box-shadow: 0 0 10px -1px black;
+}
+
+.formControl.error input,
+.formControl.error textarea{
+	box-shadow: 0 0 0 1px red;
+}
+
+.formControl.error input:focus,
+.formControl.error textarea:focus{
+	box-shadow: 0 0 1px 1px red;
+	outline: none;
+}
+
+.formControl.error span{
+	color: red;
+}
+
+.formSummaryError {
+	box-shadow: 0 0 1px 1px orangered;
+	padding: 5px;
+	color: #fa6c00;
 }
