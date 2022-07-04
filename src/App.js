@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.css'; // global styles
 import Navbar from "./components/Navbar/Navbar";
 
 import {HashRouter, Route, withRouter} from "react-router-dom";

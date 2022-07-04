@@ -9,6 +9,8 @@ import LookingJobImg from "./LookingJob/LookingJob";
 import ProfileDataForm from "../ProfileDataForm";
 import Contact from "./Contact/Contact";
 
+import reductBtnBackground from "./../../../assets/img/iconBtnReduct.png";
+
 const FALLBACK_TEXT = "Не указано";
 
 
@@ -33,8 +35,6 @@ const ProfileInfo = ({status, updateStatus, isOwner, savePhoto, saveProfile, ...
 		saveProfile(formData).then(() => {
 			setEditMode( false );
 		})
-			// .catch((error) => { throw error });
-
 	};
 
 
@@ -63,7 +63,13 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 	return 	<div className={s.descriptionBlock}>
 
-		{ isOwner && <div><button onClick={goToEditMode}>Редактировать</button> </div>}
+		{
+			isOwner && <div className={s.reductBtn_wrap}>
+				<button title="Редактировать профиль" onClick={goToEditMode} className={`btn ${s.reductBtn}`} style={{
+					backgroundImage: `url(${reductBtnBackground})`,
+				}}></button>
+			</div>
+		}
 
 		<div className={s.descriptions}>
 			<div className={s.descriptionName}>
@@ -71,15 +77,19 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 					{profile.fullName}
 				</div>
 				<div className={s.avatarBlock}>
-					<img src={profile.photos.small || userPhoto}/>
+					<img src={profile.photos?.small || userPhoto}/>
 
 					{ isOwner && <input type={"file"} onChange={onMainPhotoSelected} /> }
 
 				</div>
+
 				<div className={s.lookingForAJob}>
-					<div className={s.lookingForAJob__img}>
+
+					<div className={s.lookingForAJob__searche}>
+						<b>Ищу работу:</b>
 						<LookingJobImg lookingForAJob={profile.lookingForAJob} />
 					</div>
+
 					<div className={s.lookingForAJob__title}>
 						<b>Профессиональные навыки:</b>
 						<div>
@@ -99,7 +109,7 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 
 			<ul className={s.contactList}>
-				{Object.keys(profile.contacts).map((key) => {
+				{ profile.contacts && Object.keys(profile.contacts).map((key) => {
 					return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
 				})}
 			</ul>

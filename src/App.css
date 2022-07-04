@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+	background-color: white;
 }
 
 .App-logo {
@@ -48,4 +49,16 @@
 
 .app-wrapper-content{
 	grid-area: c;
+}
+
+.btn {
+	outline: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.btn:hover,
+.btn:focus{
+	box-shadow: inset 0px 0px 8px 1px rgba(63, 84, 112, 0.1);
 }
