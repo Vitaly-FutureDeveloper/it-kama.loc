@@ -10,47 +10,49 @@ const state = {
 	]
 };
 
-test('Lenght of posts should be incremented', () => {
-	// 1. Тестовые данные
-	const action = addPostCreator("It test post");
+describe("Profile status component", () => {
+	test('Lenght of posts should be incremented', () => {
+		// 1. Тестовые данные
+		const action = addPostCreator("It test post");
 
-	// 2. Action
-	const newState = profileReducer(state, action);
+		// 2. Action
+		const newState = profileReducer(state, action);
 
-	// 3. extraction
-	expect(newState.posts.length).toBe(4);
-});
+		// 3. extraction
+		expect(newState.posts.length).toBe(4);
+	});
 
-test('Message of new posts should be correct', () => {
-	// 1. Тестовые данные
-	const action = addPostCreator("It test post");
+	test('Message of new posts should be correct', () => {
+		// 1. Тестовые данные
+		const action = addPostCreator("It test post");
 
-	// 2. Action
-	const newState = profileReducer(state, action);
+		// 2. Action
+		const newState = profileReducer(state, action);
 
-	// 3. extraction
-	expect(newState.posts[0].message).toBe("It test post");
-});
+		// 3. extraction
+		expect(newState.posts[0].message).toBe("It test post");
+	});
 
-test('after deleting lenght of messages should be incremented', () => {
-	// 1. Тестовые данные
-	const action = deletePost(1);
+	test('after deleting lenght of messages should be incremented', () => {
+		// 1. Тестовые данные
+		const action = deletePost(1);
 
-	// 2. Action
-	const newState = profileReducer(state, action);
+		// 2. Action
+		const newState = profileReducer(state, action);
 
-	// 3. extraction
-	expect(newState.posts.length).toBe(2);
-});
+		// 3. extraction
+		expect(newState.posts.length).toBe(2);
+	});
 
-test(`after deleting lenght shouldn't be decrement if id is incorrect`, () => {
-	// 1. Тестовые данные
-	const action = deletePost(1000);
+	test(`after deleting lenght shouldn't be decrement if id is incorrect`, () => {
+		// 1. Тестовые данные
+		const action = deletePost(1000);
 
-	// 2. Action
-	const newState = profileReducer(state, action);
+		// 2. Action
+		const newState = profileReducer(state, action);
 
-	// 3. extraction
-	expect(newState.posts.length).toBe(3);
+		// 3. extraction
+		expect(newState.posts.length).toBe(3);
+	});
 });
 

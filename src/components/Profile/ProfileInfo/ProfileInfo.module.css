@@ -1,5 +1,7 @@
 .descriptionBlock{
-	display: flex;
+	display: grid;
+	grid-gap: 20px;
+	/*flex-direction: column;*/
 	margin-top: 20px;
 }
 .avatarBlock{
@@ -13,7 +15,7 @@
 .descriptions{
 	display: grid;
 	grid-template-columns: auto auto;
-	grid-gap: 15px;
+	grid-gap: 25px;
 
 	margin: 0 20px;
 }
@@ -38,4 +40,29 @@
 		align-items: start;
 		align-content: start;
 	}
+}
+
+.formControl{
+
+}
+
+.formControl.error input,
+.formControl.error textarea{
+	box-shadow: 0 0 0 1px red;
+}
+
+.formControl.error input:focus,
+.formControl.error textarea:focus{
+	box-shadow: 0 0 1px 1px red;
+	outline: none;
+}
+
+.formControl.error span{
+	color: red;
+}
+
+.formSummaryError {
+	box-shadow: 0 0 1px 1px orangered;
+	padding: 5px;
+	color: #fa6c00;
 }

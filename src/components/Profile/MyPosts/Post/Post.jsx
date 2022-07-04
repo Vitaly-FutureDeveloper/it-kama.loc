@@ -1,9 +1,10 @@
+import React from "react";
 import s from "./Post.module.css";
 import posterPhoto from "../../../../assets/img/PicsArt_11-14-051826.webp"
 
 const Post = (props) => {
 	return (
-		<div className={s.item}>
+		<div key={props.id} className={s.item}>
 			<div>
 			<img
 				src={posterPhoto}

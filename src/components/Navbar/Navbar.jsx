@@ -3,7 +3,7 @@ import Navigation from "./Navigation/Navigation";
 import FriendsBlock from "./FriendsBlock/FriendsBlock"
 import FriendsBlockContainer from "./FriendsBlock/FriendsBlockContainer";
 
-const Navbar = (props) => {
+const Navbar = () => {
 	return (
 		<aside className={s.nav}>
 			<Navigation />
