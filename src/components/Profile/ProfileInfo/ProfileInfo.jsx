@@ -10,6 +10,7 @@ import ProfileDataForm from "../ProfileDataForm";
 import Contact from "./Contact/Contact";
 
 import reductBtnBackground from "./../../../assets/img/iconBtnReduct.png";
+import photoBtnBackground from "./../../../assets/img/photocamera.png";
 
 const FALLBACK_TEXT = "Не указано";
 
@@ -79,7 +80,14 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 				<div className={s.avatarBlock}>
 					<img src={profile.photos?.small || userPhoto}/>
 
-					{ isOwner && <input type={"file"} onChange={onMainPhotoSelected} /> }
+					{/* Кнопка добавления фото */}
+					{
+						isOwner && <label title="Добавить фото" className={`btn ${s.addPhotoBtn}`} style={{
+							backgroundImage: `url(${photoBtnBackground})`,
+						}} >
+							<input type={"file"} onChange={onMainPhotoSelected} style={{ display: "none" }} />
+						</label>
+					}
 
 				</div>
 

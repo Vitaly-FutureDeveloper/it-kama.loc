@@ -16,20 +16,92 @@
 	display: grid;
 	grid-template-columns: auto auto;
 	grid-gap: 25px;
-
-	margin: 0 20px;
 }
 .reductBtn_wrap{
 	background-color: white;
 }
 .reductBtn{
+	position: relative;
+	transform: rotate(0deg);
+
 	width: 30px;
 	height: 30px;
 
+	background-color: transparent;
 	background-position: center;
 	background-repeat: no-repeat;
-	background-blend-mode: hard-light;
 	background-size: cover;
+}
+@keyframes anim-btn-reductBtn {
+	from{
+		transform: rotate(0deg);
+	}
+	to{
+		transform: rotateZ(360deg);
+	}
+}
+.reductBtn:hover,
+.reductBtn:focus{
+	animation: anim-btn-reductBtn infinite 1500ms linear;
+}
+.reductBtn:hover::before,
+.reductBtn:focus::before{
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: 100%;
+	height: 100%;
+
+	background-color: transparent;
+
+	border-radius: 50%;
+
+	box-shadow: 0px 0px 8px 5px rgba(63, 84, 112, 0.3),
+							inset 0px 0px 7px 3px rgba(63, 84, 112, 0.3);
+}
+
+.addPhotoBtn{
+	position: relative;
+	display: block;
+	width: 40px;
+	height: 30px;
+
+	padding: 6px 12px;
+
+	background-color: transparent;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+@keyframes anim-btn-addPhotoBtn {
+	from{
+		box-shadow: 0 0 0 0 rgb(202, 222, 252),
+		inset 0 0 0 0 rgba(255, 252, 252, 0.4);
+	}
+	to{
+		box-shadow: 0px 0px 30px 15px rgb(202, 222, 252),
+		inset 0px 0px 12px 3px rgba(255, 252, 252, 0.6);
+	}
+}
+.addPhotoBtn:hover::before,
+.addPhotoBtn:hover::before{
+	content: "";
+	position: absolute;
+	top: 10%;
+	left: 54%;
+	transform: translate(-50%, -10%);
+
+	width: 20%;
+	height: 20%;
+
+	background-color: transparent;
+
+	border-radius: 50%;
+
+	animation: anim-btn-addPhotoBtn 2 150ms linear;
 }
 
 .descriptionName__fullname{
