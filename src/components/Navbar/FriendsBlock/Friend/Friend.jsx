@@ -1,11 +1,11 @@
 import React from "react";
 import s from "./Friend.module.css"
 
-const Friend = (props) => {
+const Friend = ({id, name}) => {
 
 	return (
-		<div key={props.key} className={s.friend}>
-			<p className={s.friend__name}>{props.friend.name}</p>
+		<div key={id} className={s.friend}>
+			<p className={s.friend__name}>{name}</p>
 		</div>
 	)
 };

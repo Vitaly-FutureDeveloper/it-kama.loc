@@ -36,7 +36,7 @@ const profileReducer = (state=initialState, action) => {
 		case DELETE_POST: {
 			return {
 				...state,
-				posts: state.posts.filter(p => p.id != action.postId)
+				posts: state.posts.filter(p => p.id !== action.postId)
 			}
 		}
 
@@ -80,15 +80,20 @@ export const getProfile = (userId) => async (dispatch) => {
 
 export const getStatus = (status) => async (dispatch) => {
 	const response = await profileAPI.getStatus(status);
-
+console.log(response.data);
 	dispatch(setStatus(response.data));
 };
 
 export const updateStatus = (status) => async (dispatch) => {
-	const response = await profileAPI.updateStatus(status);
+	try {
+		const response = await profileAPI.updateStatus(status);
 
-	if (response.data.resultCode === 0)
-		dispatch(setStatus(status));
+		if (response.data.resultCode === 0) {
+			dispatch(setStatus(status));
+		}
+	} catch (e) {
+		throw e
+	}
 };
 
 export const savePhoto = (file) => async (dispatch) => {

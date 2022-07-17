@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import s from './Paginator.module.css';
+import cn from 'classnames';
 
 const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize=10}) => {
 	const pagesCount = Math.ceil(totalItemsCount / pageSize);
@@ -32,7 +33,7 @@ const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged, porti
 
 						let currentPageClass = (currentPage === p) ? `${s.paginationList_item__active} ` : '';
 
-						return <li className={currentPageClass + s.paginationList_item}
+						return <li className={cn({[s.paginationList_item__active]: (currentPage === p)}, s.paginationList_item)}
 											 onClick={(e) => {onPageChanged(p)}} >
 										{ p }
 									</li>

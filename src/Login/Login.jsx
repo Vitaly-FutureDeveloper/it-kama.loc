@@ -4,9 +4,10 @@ import {createField, Input} from "../components/common/FormsControls/FormsContro
 import {required} from "../utils/validators/validators";
 import {connect} from "react-redux";
 import {login, logout} from "../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
+import {NavLink, Redirect} from "react-router-dom";
 
-import s from "../../src/components/common/FormsControls/FormsControls.module.css"
+import s from "./login.module.css"
+import loginBtnBackground from "../assets/img/iconLogin.png";
 
 
 const LoginForm = ({handleSubmit, error, captchaUrl}) =>{
@@ -34,7 +35,9 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) =>{
 				</div>
 			}
 			<div>
-				<button>Login</button>
+				<button  className={`btn ${s.loginBtn}`} style={{
+					backgroundImage: `url(${loginBtnBackground})`,
+				}}></button>
 			</div>
 		</form>
 	);

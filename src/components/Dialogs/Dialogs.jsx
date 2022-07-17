@@ -9,12 +9,12 @@ import {maxLenghtCreator, required} from "../../utils/validators/validators";
 
 
 
-const Dialogs = (props) => {
+const Dialogs = ({ dialogsPage, sendMessage,...props}) => {
 
-	const state = props.dialogsPage;
+	const state = dialogsPage;
 
 	const addNewMessage = (values) => {
-		props.sendMessage(values.newMessageBody);
+		sendMessage(values.newMessageBody);
 	};
 
 	const dialogsElements = state.dialogs

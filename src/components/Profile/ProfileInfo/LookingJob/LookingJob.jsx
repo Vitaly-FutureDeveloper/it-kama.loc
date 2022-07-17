@@ -3,8 +3,9 @@ import s from "./LookingJob.module.css"
 import iconYes from "./../../../../assets/img/iconYes.png";
 import iconNo from "./../../../../assets/img/iconNo.png";
 
-const LookingJobImg = (props) => {
-	const lookJob = props.lookingForAJob;
+const LookingJobImg = ({lookingForAJob}) => {
+
+	const lookJob = lookingForAJob;
 	const icon = lookJob ? iconYes : iconNo;
 	const title = lookJob ? "Ищу работу" : "Не ищу работу";
 

@@ -15,16 +15,13 @@ import photoBtnBackground from "./../../../assets/img/photocamera.png";
 const FALLBACK_TEXT = "Не указано";
 
 
-const ProfileInfo = ({status, updateStatus, isOwner, savePhoto, saveProfile, ...props}) => {
+const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
 
 	const [editMode, setEditMode] = useState(false);
 
-
-	if (!props.profile) {
+	if (!profile) {
 		return <Spinner />
 	}
-
-
 
 	const onMainPhotoSelected = (e) => {
 		if (e.target.files.length){
@@ -46,8 +43,8 @@ const ProfileInfo = ({status, updateStatus, isOwner, savePhoto, saveProfile, ...
 			</header>
 
 			{ editMode
-				? <ProfileDataForm initialValues={props.profile} onSubmit={onSubmit} profile={props.profile}  />
-				: <ProfileData profile={props.profile}
+				? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} profile={profile}  />
+				: <ProfileData profile={profile}
 											 goToEditMode={ () => { setEditMode(true) } }
 											 isOwner={isOwner}
 											 onMainPhotoSelected={onMainPhotoSelected} />
@@ -78,7 +75,7 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 					{profile.fullName}
 				</div>
 				<div className={s.avatarBlock}>
-					<img src={profile.photos?.small || userPhoto}/>
+					<img src={profile.photos?.large || userPhoto}/>
 
 					{/* Кнопка добавления фото */}
 					{

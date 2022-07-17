@@ -2,9 +2,9 @@ import React from "react";
 import s from "./Post.module.css";
 import posterPhoto from "../../../../assets/img/PicsArt_11-14-051826.webp"
 
-const Post = (props) => {
+const Post = ({id, message, likeCount}) => {
 	return (
-		<div key={props.id} className={s.item}>
+		<div key={id} className={s.item}>
 			<div>
 			<img
 				src={posterPhoto}
@@ -12,10 +12,10 @@ const Post = (props) => {
 				alt="Картинка" />
 			</div>
 			<div>
-				<p>{props.message}</p>
+				<p>{message}</p>
 			</div>
 			<div>
-				<span>likes: {props.likeCount}</span>
+				<span>likes: {likeCount}</span>
 			</div>
 		</div>
 	);

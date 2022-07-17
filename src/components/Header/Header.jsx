@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import logoutBtnBackground from "../../assets/img/iconLogout.png";
 import loginBtnBackground from "../../assets/img/iconLogin.png";
 
-const Header = (props) => {
+const Header = ({login, logout, isAuth}) => {
 	return (
 		<header className={s.header}>
 
@@ -13,13 +13,13 @@ const Header = (props) => {
 			</div>
 
 			<div className={s.loginBlock}>
-				{!props.isAuth ?
+				{!isAuth ?
 					<NavLink to={'/login'} title="Войти" className={`btn ${s.logoutBtn}`} style={{
 						backgroundImage: `url(${loginBtnBackground})`,
 					}}></NavLink>
 				:
-					<div className={s.logoutBlock}><b>{props.login}</b> <button title="Выйти" className={`btn ${s.logoutBtn}`}
-						onClick={props.logout} style={{
+					<div className={s.logoutBlock}><b>{login}</b> <button title="Выйти" className={`btn ${s.logoutBtn}`}
+						onClick={logout} style={{
 						backgroundImage: `url(${logoutBtnBackground})`,
 					}}></button></div>
 				}

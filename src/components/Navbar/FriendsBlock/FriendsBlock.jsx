@@ -1,8 +1,8 @@
 import s from "./FriendsBlock.module.css";
 import Friend from "./Friend/Friend";
 
-const FriendsBlock = (props) => {
-	const friendElements = props.state.map((item, i) => <Friend friend={item} key={i} />);
+const FriendsBlock = ({friends}) => {
+	const friendElements = friends.map((item) => <Friend name={item.name} id={item.id} />);
 
 	return (
 		<section className={s.FriendsBlock}>

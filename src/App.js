@@ -1,7 +1,7 @@
 import './App.css'; // global styles
 import Navbar from "./components/Navbar/Navbar";
 
-import {HashRouter, Route, withRouter} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, withRouter} from "react-router-dom";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
@@ -26,8 +26,19 @@ const Login = React.lazy(() => import("./Login/Login"));
 
 class App extends React.Component {
 
+	catchAllUnhandledErrors = (reason, promise) => {
+		alert('какая-то ошибка');
+		// console.warn(`unhandledRejection: ${promise}`);
+	}
+
 	componentDidMount() {
 		this.props.initializeApp();
+
+		window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors);
 	}
 
 	render() {
@@ -49,6 +60,10 @@ class App extends React.Component {
 					{/*<Route path='/settings' component={Settings} />*/}
 					{/*<Route path='/news' component={News} />*/}
 
+					<switch>
+
+					<Route exact path='/' render={ () => <Redirect to={"/profile"} /> }/>
+
 					<Route path='/dialogs' render={withSuspense(DialogsContainer)}/>
 
 					<Route path='/profile/:userId?' render={withSuspense(ProfileContainer)}/>
@@ -60,6 +75,11 @@ class App extends React.Component {
 					<Route path='/users' render={() => <UsersContainer/>}/>
 
 					<Route path='/login' render={withSuspense(Login)} />
+
+					<Route path='*' render={ () => <div>404 Ошибка</div>} />
+
+					</switch>
+
 				</div>
 			</div>
 		);
@@ -78,7 +98,7 @@ const AppContainer = compose(
 )(App);
 
 const SamuraiJSApp = () => {
-	return <HashRouter>
+	return <BrowserRouter>
 		<Provider store={store}>
 			<AppContainer />
 			{/*<App state={state}*/}
@@ -89,7 +109,7 @@ const SamuraiJSApp = () => {
 			{/*// 		на store, а не к props*/}
 			{/*		 dispatch={store.dispatch.bind(store)} />*/}
 		</Provider>
-	</HashRouter>;
+	</BrowserRouter>;
 };
 
 export default SamuraiJSApp;
