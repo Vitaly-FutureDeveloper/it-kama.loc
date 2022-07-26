@@ -13,6 +13,7 @@ import reductBtnBackground from "./../../../assets/img/iconBtnReduct.png";
 import photoBtnBackground from "./../../../assets/img/photocamera.png";
 
 import cn from 'classnames';
+import SpinHypnotic from "../../common/spinners/SpinHypnotic";
 
 const FALLBACK_TEXT = "Не указано";
 
@@ -79,7 +80,11 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 					{profile.fullName}
 				</div>
 				<div className={s.avatarBlock}>
-					<img src={profile.photos?.large || userPhoto}/>
+					{profile.photos ?
+						<img src={profile.photos.large || userPhoto}/>
+						:
+						<SpinHypnotic />
+					}
 
 					{/* Кнопка добавления фото */}
 					{
@@ -88,6 +93,8 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 															style={{
 							backgroundImage: `url(${photoBtnBackground})`,
 						}} >
+
+							{/* input photo button */}
 							<input type={"file"} onChange={onMainPhotoSelected} style={{ display: "none" }} />
 						</label>
 					}
@@ -98,21 +105,32 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 					<div className={s.lookingForAJob__searche}>
 						<b>Ищу работу:</b>
-						<LookingJobImg lookingForAJob={profile.lookingForAJob} />
+						{profile ?
+							<LookingJobImg lookingForAJob={profile.lookingForAJob} />
+							:
+							<SpinHypnotic />
+						}
+
 					</div>
 
 					<div className={s.lookingForAJob__title}>
 						<b>Профессиональные навыки:</b>
-						<div>
-							{profile.lookingForAJobDescription || FALLBACK_TEXT}
-						</div>
+						{
+							profile ?
+								<div>{profile.lookingForAJobDescription || FALLBACK_TEXT}</div>
+								:
+								<SpinHypnotic />
+						}
 					</div>
 
 					<div className={s.lookingForAJob__about}>
 						<b>Обо мне:</b>
-						<div>
-							{profile.aboutMe || FALLBACK_TEXT}
-						</div>
+						{
+							profile ?
+								<div>{profile.aboutMe || FALLBACK_TEXT}</div>
+								:
+								<SpinHypnotic />
+						}
 					</div>
 				</div>
 			</div>
@@ -120,8 +138,8 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 
 			<ul className={s.contactList}>
-				{ profile.contacts && Object.keys(profile.contacts).map((key) => {
-					return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
+				{ profile.contacts && Object.keys(profile.contacts).map((key, i) => {
+					return <Contact key={i} contactTitle={key} contactValue={profile.contacts[key]} />
 				})}
 			</ul>
 		</div>

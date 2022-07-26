@@ -1,8 +1,7 @@
 import React from "react";
 import s from "../ProfileInfo.module.css";
-import {createField, Input, Textarea} from "../../../common/FormsControls/FormsControls";
+import {createField, Input} from "../../../common/FormsControls/FormsControls";
 
-const FALLBACK_TEXT = "Не указано";
 
 const ContactForm = ({contactTitle, contactValue}) => {
 	return <li className={s.contactList__item}>

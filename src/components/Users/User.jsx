@@ -3,6 +3,7 @@ import s from './users.module.css';
 import userPhoto from '../../assets/img/im.png';
 import {NavLink} from "react-router-dom";
 import cn from "classnames";
+import SpinHypnotic from "../common/spinners/SpinHypnotic";
 
 const User = ({key, user, followingInProgress, follow, unfollow}) => {
 	return (
@@ -10,19 +11,26 @@ const User = ({key, user, followingInProgress, follow, unfollow}) => {
 				<span>
 					<div>
 						<NavLink to={`/Profile/${user.id}`}>
-							<img className={s.usersPhoto} src={ user.photos.small || userPhoto } />
+							{user.photos ?
+								<img className={s.usersPhoto} src={ user.photos.small || userPhoto } />
+								:
+								<SpinHypnotic />
+							}
 						</NavLink>
 					</div>
 
 					<div>
 
 						{ user.followed ?
+
 							<button className={cn('btn', s.btnUnFollow)} disabled={followingInProgress.some(id => id === user.id)}
 											onClick={ () => {
 								unfollow(user.id);
 							}}>Убрать из друзей</button>
 
-							: <button className={cn('btn', s.btnFollow)} disabled={followingInProgress.some(id => id === user.id)}
+							:
+
+							<button className={cn('btn', s.btnFollow)} disabled={followingInProgress.some(id => id === user.id)}
 								onClick={ () => {
 									follow(user.id);
 								}}>В друзья</button>

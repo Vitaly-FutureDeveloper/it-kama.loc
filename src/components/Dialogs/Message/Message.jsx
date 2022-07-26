@@ -1,9 +1,9 @@
 import s from "./../Dialogs.module.css";
 
 
-const Message = ({message}) => {
+const Message = ({key, message}) => {
 	return (
-		<div className={s.massage}>{message}</div>
+		<div key={key} className={s.massage}>{message}</div>
 	);
 };
 

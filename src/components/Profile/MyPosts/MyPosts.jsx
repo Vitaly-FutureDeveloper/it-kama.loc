@@ -35,12 +35,6 @@ const AddNewPostForm = (props) => {
 	return (
 		<form onSubmit={props.handleSubmit}>
 			<div>
-				{/*<Field component={Textarea}*/}
-				{/*			 // maxLenghtCreator(10) - вызываем*/}
-				{/*				// вернёт функцию валидатор*/}
-				{/*			 validate={[required, maxLenght10]}*/}
-				{/*			 name={"newPostText"}*/}
-				{/*			 placeholder={"Введите текст"} />*/}
 
 				{createField("Введите пост",
 					"newPostText",

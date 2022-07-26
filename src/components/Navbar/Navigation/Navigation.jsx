@@ -8,10 +8,10 @@ const Navigation = () => {
 					<li className={s.item}>
 						<NavLink to="/Profile" activeClassName={s.active}>Profile</NavLink>
 					</li>
-					<li className={ `${s.item}` }>
+					<li className={s.item}>
 						<NavLink to="/Dialogs" activeClassName={s.active}>Messages</NavLink>
 					</li>
-					<li className={ `${s.item}` }>
+					<li className={s.item}>
 						<NavLink to="/Users" activeClassName={s.active}>Users</NavLink>
 					</li>
 					<li className={s.item}>

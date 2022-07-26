@@ -9,7 +9,8 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 	return (
 		<form className={s.descriptionBlock} onSubmit={handleSubmit}>
 
-			{ error && <div className={s.formSummaryError}>
+			{ error &&
+				<div className={s.formSummaryError}>
 					{error}
 				</div>
 			}

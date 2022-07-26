@@ -21,7 +21,7 @@ const Dialogs = ({ dialogsPage, sendMessage,...props}) => {
 		.map(d => <DialogItem name={d.name} key={d.id} id={d.id} />);
 
 	const messagesElements = state.messages
-		.map(m => <Message message={m.name} key={m.id} id={m.id} />);
+		.map(m => <Message message={m.name} key={m.id} />);
 
 
 	return (
