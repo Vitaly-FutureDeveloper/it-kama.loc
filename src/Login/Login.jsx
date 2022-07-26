@@ -5,6 +5,7 @@ import {required} from "../utils/validators/validators";
 import {connect} from "react-redux";
 import {login, logout} from "../redux/auth-reducer";
 import {NavLink, Redirect} from "react-router-dom";
+import cn from "classnames";
 
 import s from "./login.module.css"
 import loginBtnBackground from "../assets/img/iconLogin.png";
@@ -35,7 +36,8 @@ const LoginForm = ({handleSubmit, error, captchaUrl}) =>{
 				</div>
 			}
 			<div>
-				<button  className={`btn ${s.loginBtn}`} style={{
+				<button  className={cn('btn', s.loginBtn)}
+								 style={{
 					backgroundImage: `url(${loginBtnBackground})`,
 				}}></button>
 			</div>

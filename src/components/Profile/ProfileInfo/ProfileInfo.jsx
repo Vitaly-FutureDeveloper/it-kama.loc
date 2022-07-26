@@ -12,6 +12,8 @@ import Contact from "./Contact/Contact";
 import reductBtnBackground from "./../../../assets/img/iconBtnReduct.png";
 import photoBtnBackground from "./../../../assets/img/photocamera.png";
 
+import cn from 'classnames';
+
 const FALLBACK_TEXT = "Не указано";
 
 
@@ -63,7 +65,9 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 		{
 			isOwner && <div className={s.reductBtn_wrap}>
-				<button title="Редактировать профиль" onClick={goToEditMode} className={`btn ${s.reductBtn}`} style={{
+				<button title="Редактировать профиль"
+								onClick={goToEditMode}
+								className={cn('btn', s.reductBtn)} style={{
 					backgroundImage: `url(${reductBtnBackground})`,
 				}}></button>
 			</div>
@@ -79,7 +83,9 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 					{/* Кнопка добавления фото */}
 					{
-						isOwner && <label title="Добавить фото" className={`btn ${s.addPhotoBtn}`} style={{
+						isOwner && <label title="Добавить фото"
+															className={cn('btn', s.addPhotoBtn)}
+															style={{
 							backgroundImage: `url(${photoBtnBackground})`,
 						}} >
 							<input type={"file"} onChange={onMainPhotoSelected} style={{ display: "none" }} />

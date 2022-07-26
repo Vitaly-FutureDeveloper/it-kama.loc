@@ -1,7 +1,5 @@
 import React from "react";
 import s from "./ProfileInfo/ProfileInfo.module.css";
-import userPhoto from "../../assets/img/im.png";
-import LookingJobImg from "./ProfileInfo/LookingJob/LookingJob";
 import {createField, Input, Textarea} from "../common/FormsControls/FormsControls";
 import {reduxForm} from "redux-form";
 import ContactForm from "./ProfileInfo/Contact/ContactForm";
@@ -32,12 +30,6 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 						Input )}
 
 				</div>
-
-				{/*<div className={s.avatarBlock}>*/}
-				{/*	<img src={profile.photos.small || userPhoto}/>*/}
-
-				{/*	<input type={"file"} onChange={() => {}} />*/}
-				{/*</div>*/}
 
 				<div className={s.lookingForAJob}>
 
