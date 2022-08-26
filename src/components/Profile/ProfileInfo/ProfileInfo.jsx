@@ -139,6 +139,7 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 			<ul className={s.contactList}>
 				{ profile.contacts && Object.keys(profile.contacts).map((key, i) => {
+					console.log(key);
 					return <Contact key={i} contactTitle={key} contactValue={profile.contacts[key]} />
 				})}
 			</ul>

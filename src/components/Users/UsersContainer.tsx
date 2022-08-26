@@ -1,16 +1,14 @@
 import React from "react";
+import {compose} from "redux";
 import {connect} from "react-redux";
 import {
 	follow, getUsersThunkCreator,
-	setCurrentPage,
-	setUsers, togglefollowingProgress,
 	unfollow
 } from "../../redux/users-reducer";
 
 import Users from "./Users";
 import Spinner from "../common/spinners/spinner";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
-import {compose} from "redux";
 import {
 	getCurrentPage,
 	getFollowingInProgress,
@@ -19,23 +17,44 @@ import {
 	getTotalItemsCount,
 	getUsers
 } from "../../redux/users-selectors";
+import {UsersType} from "../../types/types";
+import {AppStateType} from "../../redux/redux-store";
 
+type MapStatePropsType = {
+	currentPage:number,
+	pageSize:number,
+	isFetching:boolean,
+	totalItemsCount:number,
 
+	followingInProgress:Array<number>,
+	users:Array<UsersType>,
+};
+type MapDispatchPropsType = {
+	getUsersThunkCreator: (currentPage:number, pageSize:number) => void,
+	follow: (userId:number) => void,
+	unfollow: (userId:number) => void,
+};
+type OwnProps = {
+	pageTitle:string,
+};
 
-class UsersContainer extends React.Component {
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnProps;
+
+class UsersContainer extends React.Component<PropsType> {
 
 	componentDidMount() {
 		const {currentPage, pageSize} = this.props;
 		this.props.getUsersThunkCreator(currentPage, pageSize);
 	}
 
-	onPageChanged = (pageNumber) => {
+	onPageChanged = (pageNumber:number) => {
 		const {pageSize} = this.props;
 		this.props.getUsersThunkCreator(pageNumber, pageSize);
 	}
 
 	render(){
 		return <>
+			<h2>{this.props.pageTitle}</h2>
 			{this.props.isFetching && <Spinner />}
 						<Users totalItemsCount={this.props.totalItemsCount}
 									pageSize={this.props.pageSize}
@@ -52,7 +71,7 @@ class UsersContainer extends React.Component {
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:AppStateType):MapStatePropsType => {
 	return {
 		users: getUsers(state),
 		pageSize: getPageSize(state),
@@ -63,12 +82,9 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = {
-		follow,
-		unfollow,
-		setUsers,
-		setCurrentPage,
-		togglefollowingProgress,
+const mapDispatchToProps:MapDispatchPropsType = {
+	follow,
+	unfollow,
 	getUsersThunkCreator,
 };
 

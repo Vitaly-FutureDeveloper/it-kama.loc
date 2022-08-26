@@ -4,10 +4,18 @@ import userPhoto from '../../assets/img/im.png';
 import {NavLink} from "react-router-dom";
 import cn from "classnames";
 import SpinHypnotic from "../common/spinners/SpinHypnotic";
+import {UsersType} from "../../types/types";
 
-const User = ({key, user, followingInProgress, follow, unfollow}) => {
+
+type PropsType = {
+	user:UsersType,
+	followingInProgress:Array<number>,
+	follow: (userId:number) => void,
+	unfollow: (userId:number) => void,
+};
+const User:React.FC<PropsType> = ({user, followingInProgress, follow, unfollow}) => {
 	return (
-		<div key={key}>
+		<div>
 				<span>
 					<div>
 						<NavLink to={`/Profile/${user.id}`}>

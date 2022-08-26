@@ -54,11 +54,6 @@ class App extends React.Component {
 				<Navbar/>
 				{/*<Profile/>*/}
 				<div className="app-wrapper-content">
-					{/*<Route path='/dialogs' component={Dialogs} />*/}
-					{/*<Route path='/profile' component={Profile} />*/}
-					{/*<Route path='/music' component={Music} />*/}
-					{/*<Route path='/settings' component={Settings} />*/}
-					{/*<Route path='/news' component={News} />*/}
 
 					<switch>
 
@@ -72,7 +67,7 @@ class App extends React.Component {
 					<Route path='/settings' render={() => <Settings/>}/>
 					<Route path='/news' render={() => <News/>}/>
 
-					<Route path='/users' render={() => <UsersContainer/>}/>
+					<Route path='/users' render={() => <UsersContainer pageTitle={'Самурай'} />}/>
 
 					<Route path='/login' render={withSuspense(Login)} />
 
@@ -101,13 +96,6 @@ const SamuraiJSApp = () => {
 	return <BrowserRouter>
 		<Provider store={store}>
 			<AppContainer />
-			{/*<App state={state}*/}
-			{/*		 store={store}*/}
-			{/*//		.bind(store)*/}
-			{/*//		Для того чтоб, привязать контекст к store,*/}
-			{/*//		Чтоб, когда мы обращаемся к props, this указывал*/}
-			{/*// 		на store, а не к props*/}
-			{/*		 dispatch={store.dispatch.bind(store)} />*/}
 		</Provider>
 	</BrowserRouter>;
 };

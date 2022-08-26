@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import {setAuthUserData, logout} from "../../redux/auth-reducer";
+import {logout} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
@@ -36,6 +36,5 @@ export default compose(
 	withRouter,
 	connect(mapStateToProps,
 	{
-		setAuthUserData,
 		logout}
 	))(HeaderContainer);
