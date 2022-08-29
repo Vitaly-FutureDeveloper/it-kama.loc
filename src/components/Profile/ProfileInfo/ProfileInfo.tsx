@@ -1,6 +1,7 @@
-import React, {useState} from "react";
-
+import React, {ChangeEvent, useState} from "react";
+import cn from 'classnames';
 import s from "./ProfileInfo.module.css";
+
 import userPhoto from '../../../assets/img/im.png';
 import Spinner from "../../common/spinners/spinner";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
@@ -12,13 +13,25 @@ import Contact from "./Contact/Contact";
 import reductBtnBackground from "./../../../assets/img/iconBtnReduct.png";
 import photoBtnBackground from "./../../../assets/img/photocamera.png";
 
-import cn from 'classnames';
 import SpinHypnotic from "../../common/spinners/SpinHypnotic";
+import {ContactsType, ProfileType} from "../../../types/types";
 
 const FALLBACK_TEXT = "Не указано";
 
-
-const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, saveProfile}) => {
+type PropsType = {
+	profile:ProfileType | null,
+	status:string,
+	isOwner:boolean,
+	saveProfile: (profile:ProfileType) => Promise<any>,
+	updateStatus: (status:string) => void,
+	savePhoto: (file:File) => void,
+};
+const ProfileInfo:React.FC<PropsType> = ({profile,
+																					 status,
+																					 updateStatus,
+																					 isOwner,
+																					 savePhoto,
+																					 saveProfile}) => {
 
 	const [editMode, setEditMode] = useState(false);
 
@@ -26,13 +39,14 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
 		return <Spinner />
 	}
 
-	const onMainPhotoSelected = (e) => {
-		if (e.target.files.length){
+	const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files.length){
 			savePhoto(e.target.files[0]);
 		}
 	};
 
-	const onSubmit = (formData) => {
+	const onSubmit:any = (formData:ProfileType) => {
+		// todo : remove then
 		saveProfile(formData).then(() => {
 			setEditMode( false );
 		})
@@ -46,7 +60,7 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
 			</header>
 
 			{ editMode
-				? <ProfileDataForm initialValues={profile} onSubmit={onSubmit} profile={profile}  />
+				? <ProfileDataForm onSubmit={onSubmit} profile={profile}  />
 				: <ProfileData profile={profile}
 											 goToEditMode={ () => { setEditMode(true) } }
 											 isOwner={isOwner}
@@ -58,9 +72,14 @@ const ProfileInfo = ({profile, status, updateStatus, isOwner, savePhoto, savePro
 };
 
 
+type ProfileDataPropsType = {
+	profile:ProfileType,
+	isOwner:boolean,
+	goToEditMode: () => void,
+	onMainPhotoSelected: (e: ChangeEvent<HTMLInputElement>) => any,
+};
 
-
-const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
+const ProfileData:React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 	return 	<div className={s.descriptionBlock}>
 
@@ -139,8 +158,7 @@ const ProfileData = ({profile, isOwner, goToEditMode, onMainPhotoSelected}) => {
 
 			<ul className={s.contactList}>
 				{ profile.contacts && Object.keys(profile.contacts).map((key, i) => {
-					console.log(key);
-					return <Contact key={i} contactTitle={key} contactValue={profile.contacts[key]} />
+					return <Contact key={i} contactTitle={key} contactValue={profile.contacts[key as keyof ContactsType]} />
 				})}
 			</ul>
 		</div>

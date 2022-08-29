@@ -40,7 +40,7 @@ export const Input:React.FC<WrappedFieldProps> = (props) => {
 		</FormControl>
 	);
 };
-
+export type GetStringKeys<T> =  Extract <keyof T, string>;
 
 export function createField<FormKeysType extends string> (placeholder:string | undefined,
 														name: FormKeysType,

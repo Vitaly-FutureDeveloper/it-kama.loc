@@ -79,7 +79,6 @@ export const actions = {
 	} as const),
 };
 
-export type GetStateType = () => AppStateType;
 export type DispatchType = Dispatch<ActionsTypes>;
 
 

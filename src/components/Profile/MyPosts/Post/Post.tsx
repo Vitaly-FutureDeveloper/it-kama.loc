@@ -1,10 +1,14 @@
 import React from "react";
 import s from "./Post.module.css";
 import posterPhoto from "../../../../assets/img/PicsArt_11-14-051826.webp"
+import {PostType} from "../../../../types/types";
 
-const Post = ({id, message, likeCount}) => {
+
+type PropsType = PostType;
+
+const Post:React.FC<PropsType> = ({message, likeCount}) => {
 	return (
-		<div key={id} className={s.item}>
+		<div className={s.item}>
 			<div>
 			<img
 				src={posterPhoto}

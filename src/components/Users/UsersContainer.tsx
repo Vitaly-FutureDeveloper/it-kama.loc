@@ -34,11 +34,8 @@ type MapDispatchPropsType = {
 	follow: (userId:number) => void,
 	unfollow: (userId:number) => void,
 };
-type OwnProps = {
-	pageTitle:string,
-};
 
-type PropsType = MapStatePropsType & MapDispatchPropsType & OwnProps;
+type PropsType = MapStatePropsType & MapDispatchPropsType;
 
 class UsersContainer extends React.Component<PropsType> {
 
@@ -54,7 +51,6 @@ class UsersContainer extends React.Component<PropsType> {
 
 	render(){
 		return <>
-			<h2>{this.props.pageTitle}</h2>
 			{this.props.isFetching && <Spinner />}
 						<Users totalItemsCount={this.props.totalItemsCount}
 									pageSize={this.props.pageSize}
@@ -89,7 +85,7 @@ const mapDispatchToProps:MapDispatchPropsType = {
 };
 
 
-export default compose(
+export default compose<React.ComponentType>(
 	withAuthRedirect,
 	connect(mapStateToProps, mapDispatchToProps)
 )(UsersContainer);

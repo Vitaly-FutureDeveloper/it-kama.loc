@@ -3,7 +3,11 @@ import s from "./LookingJob.module.css"
 import iconYes from "./../../../../assets/img/iconYes.png";
 import iconNo from "./../../../../assets/img/iconNo.png";
 
-const LookingJobImg = ({lookingForAJob}) => {
+
+type PropsType = {
+	lookingForAJob:boolean,
+};
+const LookingJobImg:React.FC<PropsType> = ({lookingForAJob}) => {
 
 	const lookJob = lookingForAJob;
 	const icon = lookJob ? iconYes : iconNo;

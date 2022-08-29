@@ -1,10 +1,18 @@
 import React from "react";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import s from "./ProfileInfo/ProfileInfo.module.css";
-import {createField, Input, Textarea} from "../common/FormsControls/FormsControls";
-import {reduxForm} from "redux-form";
-import ContactForm from "./ProfileInfo/Contact/ContactForm";
 
-const ProfileDataForm = ({handleSubmit, profile, error}) => {
+import {createField, GetStringKeys, Input, Textarea} from "../common/FormsControls/FormsControls";
+import ContactForm from "./ProfileInfo/Contact/ContactForm";
+import {ProfileType} from "../../types/types";
+
+
+type ProfileFormOwnProps = {
+	profile:ProfileType,
+};
+type ProfileTypeKeys = GetStringKeys<ProfileType>;
+
+const ProfileDataForm:React.FC<InjectedFormProps<ProfileTypeKeys & ProfileFormOwnProps> & ProfileFormOwnProps> = ({handleSubmit, profile, error}) => {
 
 	return (
 		<form className={s.descriptionBlock} onSubmit={handleSubmit}>
@@ -25,7 +33,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 
 				<div className={s.descriptionName__fullname}>
 
-					{createField("Полное имя",
+					{createField<ProfileTypeKeys>("Полное имя",
 						"fullName",
 						[],
 						Input )}
@@ -37,7 +45,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 					<div className={s.lookingForAJob__searche}>
 						<b>Ищу работу:</b>
 
-						{createField("",
+						{createField<ProfileTypeKeys>("",
 							"lookingForAJob",
 							[],
 							Input,
@@ -47,7 +55,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 					<div className={s.lookingForAJob__title}>
 						<b>Профессиональные навыки:</b>
 
-						{createField("Мои профессиональые навыки",
+						{createField<ProfileTypeKeys>("Мои профессиональые навыки",
 							"aboutMe",
 							[],
 							Textarea )}
@@ -57,7 +65,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 						<b>Обо мне:</b>
 
 						<div>
-							{createField("Обо мне",
+							{createField<ProfileTypeKeys>("Обо мне",
 								"lookingForAJobDescription",
 								[],
 								Textarea )}
@@ -65,8 +73,9 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 					</div>
 
 					<ul className={s.contactList}>
+						{/* todo: create some solution for embedded objects  */}
 						{profile.contacts && Object.keys(profile.contacts).map((key, i) => {
-							return <ContactForm key={i} contactTitle={key} contactValue={profile.contacts[key]} />
+							return <ContactForm key={i} contactTitle={key} />
 						})}
 					</ul>
 
@@ -78,9 +87,12 @@ const ProfileDataForm = ({handleSubmit, profile, error}) => {
 	);
 };
 
-const ProfileDataFormRedux = reduxForm({
+const ProfileDataFormRedux = reduxForm<ProfileTypeKeys, ProfileFormOwnProps>({
 	// a unique name for the form
 	form: 'edit-profile'
-})(ProfileDataForm);
+})
+//@ts-ignore
+(ProfileDataForm);
+// todo: types for reduxforms
 
 export default ProfileDataFormRedux;

@@ -1,6 +1,6 @@
-import s from './Messages.module.css';
+import React from "react";
 
-const Messages = () => {
+const Messages:React.FC = () => {
 	return(
 		<div className="dialogs">
 			<div className="dialogs-items">

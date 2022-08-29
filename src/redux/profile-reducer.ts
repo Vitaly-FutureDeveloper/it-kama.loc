@@ -18,7 +18,7 @@ export const initialState = {
 export type InitialStateType = typeof initialState;
 
 export type ActionsTypes = InferActionsTypes<typeof actions>;
-type ThunkType = BaseThunkType<ActionsTypes | FormAction>;
+export type ThunkType = BaseThunkType<ActionsTypes | FormAction>;
 
 const profileReducer = (state=initialState, action:ActionsTypes):InitialStateType => {
 	switch (action.type) {

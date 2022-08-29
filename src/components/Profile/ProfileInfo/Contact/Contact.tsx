@@ -3,7 +3,11 @@ import s from "../ProfileInfo.module.css";
 
 const FALLBACK_TEXT = "Не указано";
 
-const Contact = ({contactTitle, contactValue}) => {
+type PropsType = {
+	contactTitle:string,
+	contactValue:string,
+};
+const Contact:React.FC<PropsType> = ({contactTitle, contactValue}) => {
 	return <li className={s.contactList__item}>
 		<b>{contactTitle}:</b> {contactValue || FALLBACK_TEXT}
 	</li>

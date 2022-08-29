@@ -6,11 +6,15 @@ import cn from 'classnames';
 type PropsType = {
 	totalItemsCount:number,
 	pageSize:number,
-	currentPage:number,
-	onPageChanged:(pageNumber:number)=>void,
+	currentPage?:number,
+	onPageChanged?:(pageNumber:number)=>void,
 	portionSize?:number,
 };
-const Paginator:React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage, onPageChanged, portionSize=10}) => {
+const Paginator:React.FC<PropsType> = ({totalItemsCount,
+																				 pageSize,
+																				 currentPage,
+																				 onPageChanged = (x) => x,
+																				 portionSize=10}) => {
 
 	const pagesCount = Math.ceil(totalItemsCount / pageSize);
 	const pages:Array<number> = [];
@@ -24,8 +28,8 @@ const Paginator:React.FC<PropsType> = ({totalItemsCount, pageSize, currentPage, 
 	const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
 	const rightPortionPageNumber = portionNumber * portionSize;
 
-	const disabledBtnBefore = portionNumber > 1 ? '' : true;
-	const disabledBtnNext = portionCount > portionNumber ? '' : true;
+	const disabledBtnBefore = !(portionNumber > 1) // ? '' : true;
+	const disabledBtnNext = !(portionCount > portionNumber) // ? '' : true;
 
 	return (
 		<div className={s.pagination}>

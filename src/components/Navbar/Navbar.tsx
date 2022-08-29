@@ -1,3 +1,4 @@
+import React from "react";
 import s from "./Navbar.module.css";
 import Navigation from "./Navigation/Navigation";
 import FriendsBlockContainer from "./FriendsBlock/FriendsBlockContainer";

@@ -2,11 +2,11 @@ import React from "react";
 import Spinner from "../components/common/spinners/spinner";
 
 
-export const withSuspense = (Component) => {
+export function withSuspense <WCP>(WrappedComponent: React.ComponentType<WCP>) {
 
-	return (props) => {
+	return (props:WCP) => {
 		return <React.Suspense fallback={<Spinner/>}>
-			<Component {...props} />
+			<WrappedComponent {...props} />
 		</React.Suspense>
 	};
 };

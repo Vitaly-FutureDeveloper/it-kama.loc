@@ -1,3 +1,4 @@
+import React from "react";
 import s from './Header.module.css';
 import logo from '../../assets/img/logo-social.png'
 import {NavLink} from "react-router-dom";
@@ -5,7 +6,15 @@ import logoutBtnBackground from "../../assets/img/iconLogout.png";
 import loginBtnBackground from "../../assets/img/iconLogin.png";
 import cn from "classnames";
 
-const Header = ({login, logout, isAuth}) => {
+
+export type MapPropsType = {
+	isAuth: boolean,
+	login: string | null,
+};
+export type DispatchPropsType = {
+	logout: () => void,
+};
+const Header:React.FC<MapPropsType & DispatchPropsType> = ({login, logout, isAuth}) => {
 	return (
 		<header className={s.header}>
 

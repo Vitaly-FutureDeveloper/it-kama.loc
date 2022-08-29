@@ -1,6 +1,6 @@
-import s from './Settings.module.css';
+import React from "react";
 
-const Settings = (props) => {
+const Settings: React.FC = () => {
 	return(
 		<div >
 			Settings
