@@ -8,9 +8,9 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {AppStateType} from "../../redux/redux-store";
 
 
-type MapDispatchPropsType = {
-	sendMessage: (newMessageBody:string) => void,
-};
+// type MapDispatchPropsType = {
+// 	sendMessage: (newMessageBody:string) => void,
+// };
 
 const mapStateToProps = (state:AppStateType) => {
 	return {

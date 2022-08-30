@@ -62,7 +62,7 @@ type MapStatePropsType = {
 };
 type MapDispatchPropsType = {
 	login: (email:string, password:string, rememberMe:boolean, captcha:string) => void,
-	logout: (email:string, password:string, rememberMe:boolean, captcha:string) => void,
+	logout: () => void,
 };
 type LoginFormOwnProps = {
 	captchaUrl:string | null,

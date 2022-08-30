@@ -11,7 +11,11 @@ import {logout} from "../../redux/auth-reducer";
 class HeaderContainer extends React.Component<MapPropsType> {
 
 	render() {
-		return <Header {...this.props} />;
+		return <Header isAuth={this.props.isAuth}
+									 login={this.props.login}
+									 //@ts-ignore
+									 logout={this.props.logout} />;
+		// todo : fix logout TS2339: Property 'logout' does not exist on type 'Readonly '.
 	}
 };
 
@@ -20,7 +24,11 @@ const mapStateToProps = (state:AppStateType) => ({
 	login: state.auth.login
 } as MapPropsType);
 
+const mapDispatchToProps:DispatchPropsType = ({
+	logout,
+});
+
 export default compose<React.ComponentType>(
 	withRouter,
 	connect<MapPropsType, DispatchPropsType, {}, AppStateType>(mapStateToProps,
-	{ logout } ))(HeaderContainer);
+		mapDispatchToProps ))(HeaderContainer);

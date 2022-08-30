@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import logoutBtnBackground from "../../assets/img/iconLogout.png";
 import loginBtnBackground from "../../assets/img/iconLogin.png";
 import cn from "classnames";
+import { ThunkType } from "../../redux/profile-reducer";
 
 
 export type MapPropsType = {

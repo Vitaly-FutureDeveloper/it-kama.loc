@@ -13,7 +13,12 @@ type PropsType = {
 	savePhoto: (file:File) => void,
 };
 
-const Profile:React.FC<PropsType> = ({isOwner, profile, saveProfile, status, updateStatus, savePhoto, ...props}) => {
+const Profile:React.FC<PropsType> = ({isOwner,
+																			 profile,
+																			 saveProfile,
+																			 status,
+																			 updateStatus,
+																			 savePhoto}) => {
 	return (
 		<div>
 			<ProfileInfo isOwner={isOwner}
