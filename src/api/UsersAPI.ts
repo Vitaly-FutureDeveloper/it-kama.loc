@@ -1,6 +1,4 @@
 import {GetItemsType, instance, ResponseType} from "./api";
-import {AxiosPromise} from "axios";
-
 
 
 export const usersAPI = {

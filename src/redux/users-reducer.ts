@@ -4,9 +4,10 @@ import {updateObjectInArray} from "../utils/object-helper";
 import {UsersType} from "../types/types";
 import {Dispatch} from "redux";
 import {AppStateType, BaseThunkType, InferActionsTypes} from "./redux-store";
+import {ResponseType} from "../api/api";
 
 
-const initialState = {
+export const initialState = {
 	users : [] as Array<UsersType>,
 	pageSize: 50,
 	totalUsersCount: 0,
@@ -15,7 +16,7 @@ const initialState = {
 	followingInProgress: [] as Array<number>, // array of users ids
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionsTypes = InferActionsTypes<typeof actions>;
 type ThunkType = BaseThunkType<ActionsTypes>;
@@ -98,7 +99,7 @@ export const getUsersThunkCreator = (currentPage:number, pageSize:number):ThunkT
 
 const _followUnfollowToggle = async ( dispatch:DispatchType,
 																		 userId:number,
-																		 apiMethod:any,
+																		 apiMethod: (userId:number) => Promise<ResponseType>,
 																		 actionCreator: (userID:number) => ActionsTypes ) => {
 	dispatch(actions.togglefollowingProgress(true, userId));
 
@@ -114,7 +115,7 @@ export const follow = (userId:number):ThunkType => {
 	return async (dispatch) => {
 		const apiMethod = usersAPI.follow.bind(usersAPI);
 
-		_followUnfollowToggle(dispatch, userId, apiMethod, actions.followSuccess);
+		await _followUnfollowToggle(dispatch, userId, apiMethod, actions.followSuccess);
 	}
 };
 
@@ -122,7 +123,7 @@ export const unfollow = (userId:number):ThunkType => {
 	return async (dispatch) => {
 		const apiMethod = usersAPI.unfollow.bind(usersAPI);
 
-		_followUnfollowToggle(dispatch, userId, apiMethod, actions.unfollowSuccess);
+		await _followUnfollowToggle(dispatch, userId, apiMethod, actions.unfollowSuccess);
 	}
 };
 
