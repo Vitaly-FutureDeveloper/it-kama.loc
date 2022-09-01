@@ -74,6 +74,5 @@ describe("Users Thunks", () => {
 		expect(dispaptchMock).toHaveBeenNthCalledWith(3, actions.setUsers(resultGetUsers.items));
 		expect(dispaptchMock).toHaveBeenNthCalledWith(4, actions.setTotalUsersCount(20));
 		expect(dispaptchMock).toHaveBeenNthCalledWith(5, actions.toggleIsFetching(false));
-
 	});
 });
