@@ -32,7 +32,7 @@ type MapStatePropsType = {
 	filter:FilterType,
 };
 type MapDispatchPropsType = {
-	getUsersThunkCreator: (currentPage:number, pageSize:number, term:string) => void,
+	getUsersThunkCreator: (currentPage:number, pageSize:number, filter:FilterType) => void,
 	follow: (userId:number) => void,
 	unfollow: (userId:number) => void,
 };
@@ -42,18 +42,18 @@ type PropsType = MapStatePropsType & MapDispatchPropsType;
 class UsersContainer extends React.Component<PropsType> {
 
 	componentDidMount() {
-		const {currentPage, pageSize} = this.props;
-		this.props.getUsersThunkCreator(currentPage, pageSize, "");
+		const {currentPage, pageSize, filter} = this.props;
+		this.props.getUsersThunkCreator(currentPage, pageSize, filter);
 	}
 
 	onPageChanged = (pageNumber:number) => {
 		const {pageSize, filter} = this.props;
-		this.props.getUsersThunkCreator(pageNumber, pageSize, filter.term);
+		this.props.getUsersThunkCreator(pageNumber, pageSize, filter);
 	}
 
 	onFilterChanged = (filter: FilterType) => {
 		const {pageSize} = this.props;
-		this.props.getUsersThunkCreator(1, pageSize, filter.term);
+		this.props.getUsersThunkCreator(1, pageSize, filter);
 	}
 
 	render(){
