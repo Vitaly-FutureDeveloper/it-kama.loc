@@ -18,7 +18,7 @@ import Spinner from "./components/common/spinners/spinner";
 
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
-const Login = React.lazy(() => import("./Login/Login"));
+const LoginPage = React.lazy(() => import("./Login/LoginPage"));
 
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
@@ -72,7 +72,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
 
 					<Route path='/users' render={() => <UsersPage pageTitle={'Самураи'} />}/>
 
-					<Route path='/login' render={withSuspense(Login)} />
+					<Route path='/login' render={withSuspense(LoginPage)} />
 
 					<Route path='*' render={ () => <div>404 Ошибка</div>} />
 
