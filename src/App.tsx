@@ -1,18 +1,18 @@
 import React from "react";
 import {connect, Provider} from "react-redux";
 import {compose} from "redux";
-import {BrowserRouter, Redirect, Route, withRouter, Switch} from "react-router-dom";
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from "react-router-dom";
 
 import store, {AppStateType} from "./redux/redux-store";
 import {initializeApp} from "./redux/app-reducer";
 import {withSuspense} from "./hoc/withSuspense";
 
-import './App.css'; // global styles
+import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import UsersContainer from "./components/Users/UsersContainer";
+import {UsersPage} from "./components/Users/UsersPage";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import Spinner from "./components/common/spinners/spinner";
 
@@ -70,7 +70,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
 					<Route path='/settings' render={() => <Settings/>}/>
 					<Route path='/news' render={() => <News/>}/>
 
-					<Route path='/users' render={() => <UsersContainer />}/>
+					<Route path='/users' render={() => <UsersPage pageTitle={'Самураи'} />}/>
 
 					<Route path='/login' render={withSuspense(Login)} />
 
